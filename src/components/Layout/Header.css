@@ -1,0 +1,285 @@
+.page-header {
+  display: flex;
+  display: -webkit-flex;
+}
+
+.header-nav {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 15vh;
+  display: none;
+  background-color: #160C28;
+  transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -webkit-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -moz-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -ms-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -o-transition: all 0.5s cubic-bezier(.45,0,0,1);
+}
+
+.app-logo {
+  height: 8vh;
+  transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -webkit-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -moz-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -ms-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -o-transition: all 0.5s cubic-bezier(.45,0,0,1);
+}
+
+.logo-container {
+  left: 4vh;
+  top: 3.5vh;
+  position: fixed;
+  z-index: 2;
+}
+
+@media (min-width: 600px) {
+  .app-logo {
+    height: 10vh;
+  }
+  
+  .logo-container {
+    top: 2.5vh;
+  }
+}
+
+nav {
+  height: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+ul {
+	list-style-type: none;
+	cursor: default;
+	padding: 0px;
+  margin: 0px;
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+}
+
+.nav-list {
+  line-height: 500px;
+}
+
+.center-nav {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-content: center;
+  -webkit-align-content: center;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+
+.nav-list-item {
+  padding-left: 30px;
+  font-size: 1.2em;
+}
+
+a {
+  text-decoration: none;
+  color: #fdfdfd;
+  position: relative;
+}
+
+li>a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: yellow;
+  visibility: hidden;
+  transform: scaleX(0);
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transition: all 0.2s ease-in-out 0s;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -moz-transition: all 0.2s ease-in-out 0s;
+  -ms-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+}
+
+li>a:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+}
+
+/* Mobile Text Button */
+.mobile-menu-button {
+  position: fixed;
+  top: auto;
+  bottom: 20px;
+  right: 10px;
+  background: #fdfdfd;
+/*  background: #25CED1;*/
+/*  background: #DEE5E5;*/
+/*  background: #56CBF9;*/
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  transition: background 0.5s;
+  -webkit-transition: background 0.5s;
+  -moz-transition: background 0.5s;
+  -ms-transition: background 0.5s;
+  -o-transition: background 0.5s;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.mobile-menu-button i {
+  display: block;
+  width: 30px;
+  height: 2px;
+  margin: 5px;
+  background-color: #160C28;
+  transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -webkit-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -moz-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -ms-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -o-transition: all 0.5s cubic-bezier(.45,0,0,1);
+}
+
+.menu-button-on i {
+  background-color: #fdfdfd;
+}
+
+.menu-button-on i:nth-child(1) {
+  transform: translate3d(0px, 12px, 0px) scale3d(1, 1, 1) rotate(45deg);
+  -webkit-transform: translate3d(0px, 12px, 0px) scale3d(1, 1, 1) rotate(45deg);
+  -moz-transform: translate3d(0px, 12px, 0px) scale3d(1, 1, 1) rotate(45deg);
+  -ms-transform: translate3d(0px, 12px, 0px) scale3d(1, 1, 1) rotate(45deg);
+  -o-transform: translate3d(0px, 12px, 0px) scale3d(1, 1, 1) rotate(45deg);
+  background-color: yellow;
+} 
+
+.menu-button-on i:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-button-on i:nth-child(3) {
+  transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
+  -webkit-transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
+  -moz-transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
+  -ms-transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
+  -o-transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
+  background-color: yellow;
+}
+
+.menu-button-on {
+  background: #160C28;
+}
+
+/* Expanded menu that appears when clicked */
+.mobile-menu {
+  position: fixed;
+  top: auto;
+  bottom: 50px;
+  right: 40px;
+  background: #fdfdfd;
+  border-radius: 50%;
+  width: 0;
+  height: 0px;
+  z-index: 2;
+  transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -webkit-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -moz-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -ms-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -o-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  z-index: 1;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.menu-expand {
+  width: 95vh;
+  height: 95vh;
+  margin: -55vh;
+}
+
+/* Menu Text */
+.menu-text {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(1,0,.62,1);
+  -webkit-transition: opacity 0.5s cubic-bezier(1,0,.62,1);
+  -moz-transition: opacity 0.5s cubic-bezier(1,0,.62,1);
+  -ms-transition: opacity 0.5s cubic-bezier(1,0,.62,1);
+  -o-transition: opacity 0.5s cubic-bezier(1,0,.62,1);
+}
+
+.menu-text a {
+  color: #160C28;
+  z-index: 3;
+}
+
+.menu-text-open {
+  opacity: 1;
+}
+
+.menu-text-home {
+  position: relative;
+  top: 39vh;
+  left: 10vh;
+}
+
+.menu-text-about {
+  position: relative;
+  top: 27.5vh;
+  left: 10vh;
+}
+
+.menu-text-work {
+  position: relative;
+  top: 17.5vh;
+  left: 13.5vh;
+}
+
+.menu-text-contact {
+  position: relative;
+  top: 10vh;
+  left: 21.5vh;
+}
+
+@media (min-width: 600px) {
+  .mobile-menu-button {
+    display: none;
+  }
+  
+  .mobile-menu  {
+    display: none;
+  }
+  
+  .header-nav {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+  }
+}

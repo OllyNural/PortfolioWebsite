@@ -1,0 +1,23 @@
+@Keyframes expandFromLeft {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+hr {
+  background-color: #fdfdfd;
+  border: 0px;
+  height: 2px;
+  margin-left: 0px;
+  animation: 1s cubic-bezier(.45,0,0,1) expandFromLeft;
+  -webkit-animation: 1s cubic-bezier(.45,0,0,1) expandFromLeft;
+  -moz-animation: 1s cubic-bezier(.45,0,0,1) expandFromLeft;
+  -ms-animation: 1s cubic-bezier(.45,0,0,1) expandFromLeft;
+  -o-animation: 1s cubic-bezier(.45,0,0,1) expandFromLeft;
+  
+  
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(#fdfdfd), to(#160C28), color-stop(30%, #fdfdfd));
+}

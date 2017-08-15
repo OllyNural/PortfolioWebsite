@@ -1,0 +1,92 @@
+.contact-container {
+  width: 80%;
+}
+
+.contact-intro-form {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  margin-top: 25px;
+}
+
+.contact-text {
+  width: 100%;
+  margin-bottom: 25px;;
+}
+
+.contact-form {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .contact-form {
+    width: 70%;
+  }
+}
+
+@media (min-width: 850px) {
+  .contact-text {
+    width: 40%;
+    margin-right: 10%;
+  }
+  
+  .contact-form {
+    width: 50%;
+  }
+}
+
+.contact-form > form {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+form > textarea {
+  height: 7em;
+}
+
+.form-input {
+  padding: 10px;
+  border: solid 2px #fdfdfd;
+  transition: border 0.3s;
+  background-color: #363946;
+  margin-bottom: 25px;
+  color: #fdfdfd;
+}
+
+.form-input:focus, .form-input.focus {
+  border: solid 2px yellow;
+}
+
+.submit-button {
+  width: 50%;
+  padding: 10px;
+  color: #fdfdfd;
+  background: rgba(0,0,0,0);
+  border: solid 2px #fdfdfd;
+  cursor: pointer;
+}
+
+.submit-button:hover, .submit-button.hover {
+  border-color: yellow;
+  color: yellow;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+}

@@ -1,0 +1,19 @@
+.about-container {
+  width: 80%;
+}
+
+@media (min-width: 800px) {
+  .about-introduction {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .about-introduction {
+    width: 50%;
+  }
+}
+
+.about-introduction {
+  line-height: 175%;
+}
