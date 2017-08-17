@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Layout from '../Layout/Layout';
 import Title from '../Layout/Title';
 import Image from './Image/Image';
-import { Data } from '../Data/Data';
+import { Data } from '../ProjectList/Data';
 
 import './style.css';
 

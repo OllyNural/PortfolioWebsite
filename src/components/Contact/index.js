@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Layout from '../Layout/Layout';
 import Title from '../Layout/Title';
+import ContactForm from './ContactForm/ContactForm';
 
 import './style.css';
 
@@ -12,74 +13,63 @@ class App extends Component {
       name: '',
       email: '',
       message: '',
-      emailValid: false
+      hasEmailSent: JSON.parse(localStorage.getItem('hasEmailSent')) || false
     };
     
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleMessageChange = this.handleMessageChange.bind(this);
+    this.handleFormChange = this.handleFormChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleNameChange(event) {
-    this.setState({name: event.target.value});
-  }
-  handleEmailChange(event) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    this.setState({email: event.target.value});
-    if (re.test(event.target.value)) {
-      this.setState({emailValid: true});
-    } else {
-      this.setState({emailValid: false});
+  handleFormChange(event, type) {
+    if (type === 'name') {
+      this.setState({name: event.target.value});
+    } else if (type === 'email') {
+      this.setState({email: event.target.value});
+    } else if (type === 'message') {
+      this.setState({message: event.target.value});
     }
-  }
-  handleMessageChange(event) {
-    this.setState({message: event.target.value});
   }
   handleSubmit(event) {
-    if (this.state.emailValid) {
-      console.log('Message send request received!');
-      console.log('Name: ' + this.state.name);
-      console.log('Email: ' + this.state.email);
-      console.log('Message: ' + this.state.message);
-      
-      {/*let url = "/api/contact";
-      fetch(url, {method: 'POST'})
-        .then(function(data) {
-          console.log("Data:");
-          console.log(data);
-        })
-        .catch(function(error) {
-          console.log("Error!");
-          console.log(error);
-        }) */}
-    } else {
-      console.log('Invalid email: ' + this.state.email);
-    }
+    let url = '/api/contact';
+    console.log('Message send request received!');
+    console.log('Name: ' + this.state.name);
+    console.log('Email: ' + this.state.email);
+    console.log('Message: ' + this.state.message);
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: document.getElementById('form-name').value,
+        email: document.getElementById('form-email').value,
+        message: document.getElementById('form-message').value
+      })
+    }).then((response) => {
+      console.log(response);
+      if (response.status === 404) {
+        this.setState({hasEmailSent: true},() => {
+          localStorage.setItem('hasEmailSent', JSON.stringify('true'))
+        });
+      }
+    })
     event.preventDefault();
   }
-  sendEmail() {
-    
-  }
   render() {
+    let displayForm;
+    if (this.state.hasEmailSent) {
+      displayForm = <div className="form-submitted"><h3>Thank you for your message!</h3><p>If your email was valid, then the message will have been sent.</p></div>
+    } else {
+      displayForm = <ContactForm name={this.state.name} email={this.state.email} message={this.state.message} handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} />
+    }
     return (
         <Layout>
           <div className="page-container">
             <div className="contact-container">
-      
               <Title title="Contact Me" />
-
               <div className="contact-intro-form">
                 <div className="contact-text">
-                  Feel free to send me an email to <a href="mailto:oliver.nural@gmail.com"><span className="title-name">oliver.nural@gmail.com</span></a>, 
+                  Feel free to send an email to <a href="mailto:oliver.nural@gmail.com"><span className="title-name">oliver.nural@gmail.com</span></a>, 
                   Or alternatively, send me a message here, and i'll get back to you. 
                 </div>
                 <div className="contact-form">
-                  <form onSubmit={this.handleSubmit}>
-                      <input className="form-input" placeholder="Your name" type="text" value={this.state.name} onChange={this.handleNameChange} required />
-                      <input className="form-input" placeholder="Your email" type="text" value={this.state.email} onChange={this.handleEmailChange} required />
-                      <textarea className="form-input" placeholder="Message away!" type="text" value={this.state.message} onChange={this.handleMessageChange} required />
-                      <input className="submit-button" type="submit" value="submit" />
-                  </form>
+                  {displayForm}
                 </div>
               </div>
     

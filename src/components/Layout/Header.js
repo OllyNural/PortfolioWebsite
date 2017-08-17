@@ -47,23 +47,23 @@ export default class Header extends Component {
         </div>
         <div className="header-nav">
           <nav>
-            <ul>
-              <li className="center-nav nav-list-item">
+            <ul className="nav-ul">
+              <li className="nav-list-item">
                 <Link to="/">
                   Home
                 </Link>
               </li>
-              <li className="center-nav nav-list-item">
+              <li className="nav-list-item">
                 <Link to="/about">
                   About
                 </Link>
               </li>
-              <li className="center-nav nav-list-item">
+              <li className="nav-list-item">
                 <Link to="/work">
                   Work
                 </Link>
               </li>
-              <li className="center-nav nav-list-item">
+              <li className="nav-list-item">
                 <Link to="/contact">
                   Contact
                 </Link>
@@ -77,33 +77,25 @@ export default class Header extends Component {
           <i></i>
           <i></i>
         </div>
-      
-        <div className={'mobile-menu ' + isMenuOpen}>
-          <div className="mobile-menu-text">
-            <span className={'menu-text menu-text-home ' + isMenuTextShown} onClick={() => this.handleMenuClick()}>
-              <Link to="/">
-                Home
-              </Link>
-            </span>
-            <span className={'menu-text menu-text-about ' + isMenuTextShown} onClick={() => this.handleMenuClick()}>
-              <Link to="/about">
-                About
-              </Link>
-            </span>
-            <span className={'menu-text menu-text-work ' + isMenuTextShown} onClick={() => this.handleMenuClick()}>
-              <Link to="/work">
-                Work
-              </Link>
-            </span>
-            <span className={'menu-text menu-text-contact ' + isMenuTextShown} onClick={() => this.handleMenuClick()}>
-              <Link to="/contact">
-                Contact
-              </Link>
-            </span>
+    
+        <div className='mobile-menu-container'>
+          <div className={'mobile-menu ' + isMenuOpen}>
+            <i className={'material-icons menu-text-home ' + isMenuTextShown}>
+              <Link to="/">home</Link>
+            </i>
+            <i className={'material-icons menu-text-about ' + isMenuTextShown}>
+              <Link to="/about">info</Link>
+            </i>
+            <i className={'material-icons menu-text-work ' + isMenuTextShown}>
+              <Link to="/work">code</Link>
+            </i>
+            <i className={'material-icons menu-text-contact ' + isMenuTextShown}>
+              <Link to="/contact">email</Link>
+            </i>
           </div>
         </div>
-      
         
+      
       </header>
     );
   }

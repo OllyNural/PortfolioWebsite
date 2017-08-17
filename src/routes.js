@@ -6,7 +6,7 @@ import Work from './components/Work';
 import Contact from './components/Contact';
 import NotFoundPage from './components/NotFound';
 import TicTacToePage from './components/TicTacToe';
-import ProjectPage from './components/Project';
+import ProjectPage from './components/ProjectTemplate';
 import BlogPage from './components/Blog';
 
 const routes = (

@@ -1,0 +1,122 @@
+.contact-form > form {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+form > div {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+form > div > input, form > div > textarea {
+  width: 100%;
+}
+
+form > div > textarea {
+  height: 7em;
+}
+
+.form-label {
+  opacity: 0.3;
+  position: absolute;
+  top: 12px;
+  left: 11px;
+  cursor: text;
+}
+
+.requirements {
+  padding: 0 30px 0 50px;
+  color: #999;
+  max-height: 0;
+  transition: 0.28s;
+  overflow: hidden;
+  color: red;
+  text-align: center;
+  font-style: italic;
+}
+
+.form-input {
+  padding: 10px;
+  border: solid 2px #fdfdfd;
+  transition: border 0.3s;
+  background-color: #363946;
+  color: #fdfdfd;
+  transition: all 1s cubic-bezier(.45,0,0,1);
+  -webkit-transition: all 1s cubic-bezier(.45,0,0,1);
+  -moz-transition: all 1s cubic-bezier(.45,0,0,1);
+  -ms-transition: all 1s cubic-bezier(.45,0,0,1);
+  -o-transition: all 1s cubic-bezier(.45,0,0,1);
+}
+
+.form-input:focus,.form-input.focus {
+  border: solid 2px yellow;
+}
+
+.form-input:focus + .form-label {
+    opacity: 0;
+}
+
+.form-input:valid + .form-label {
+  opacity: 0;
+}
+
+.email-input:valid + .form-label {
+  opacity: 0;
+}
+
+.email-input:invalid:not(:focus):not(:placeholder-shown) + .form-label {
+  opacity: 0;
+}
+
+.email-input:invalid:not(:focus):not(:placeholder-shown) {
+  background: red; /* For browsers that do not support gradients */
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(#363946), to(rgba(255,0,0,1)), color-stop(60%, #363946));
+  background: -o-gradient(linear, 0 0, 100% 0, from(#363946), to(rgba(255,0,0,1)), color-stop(60%, #363946));
+  background: -moz-gradient(linear, 0 0, 100% 0, from(#363946), to(rgba(255,0,0,1)), color-stop(60%, #363946));
+  background: gradient(linear, 0 0, 100% 0, from(#363946), to(rgba(255,0,0,1)), color-stop(60%, #363946));
+}
+
+.email-input:invalid:not(:focus):not(:placeholder-shown) ~ .requirements {
+} 
+
+.email-input:invalid:focus:not(:placeholder-shown) ~ .requirements {
+  max-height: 200px;
+  padding: 5px 30px 5px 50px;
+}
+
+.submit-button {
+  width: 50%;
+  padding: 10px;
+  color: #fdfdfd;
+  background: rgba(0,0,0,0);
+  border: solid 2px #fdfdfd;
+  cursor: pointer;
+}
+
+.submit-button:hover, .submit-button.hover {
+  border-color: yellow;
+  color: yellow;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+}
+
+.form-submitted > h3 {
+  margin-top: 0px;
+}
