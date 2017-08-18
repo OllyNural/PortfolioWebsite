@@ -52,13 +52,7 @@
   width: 50%;
 }
 
-@media(min-width: 400px) {
-  .social-bar {
-    width: 40%;
-  }
-}
-
-@media (min-width: 750px) {
+@media(min-width: 750px) {
   .social-bar {
     width: 30%;
   }

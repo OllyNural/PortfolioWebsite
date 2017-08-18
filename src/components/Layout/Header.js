@@ -35,9 +35,7 @@ export default class Header extends Component {
     });
   }
   render() {
-    let isMenuOpen = this.state.isOpen ? 'menu-expand' : '';
     let isMenuTextShown = this.state.isOpen ? 'menu-text-open' : '';
-    let isMenuButtonColor = this.state.isOpen ? 'menu-button-on' : '';
     return (
       <header>
         <div className="logo-container">
@@ -72,14 +70,14 @@ export default class Header extends Component {
           </nav>
         </div>
       
-        <div className={'mobile-menu-button ' + isMenuButtonColor} onClick={() => this.handleMenuClick()}>
+        <div className={'mobile-menu-button ' + (this.state.isOpen ? 'menu-button-on' : '')} onClick={() => this.handleMenuClick()}>
           <i></i>
           <i></i>
           <i></i>
         </div>
     
         <div className='mobile-menu-container'>
-          <div className={'mobile-menu ' + isMenuOpen}>
+          <div className={'mobile-menu ' + (this.state.isOpen ? 'menu-expand' : '')}>
             <i className={'material-icons menu-text-home ' + isMenuTextShown}>
               <Link to="/">home</Link>
             </i>
@@ -87,7 +85,7 @@ export default class Header extends Component {
               <Link to="/about">info</Link>
             </i>
             <i className={'material-icons menu-text-work ' + isMenuTextShown}>
-              <Link to="/work">code</Link>
+              <Link to="/work">work</Link>
             </i>
             <i className={'material-icons menu-text-contact ' + isMenuTextShown}>
               <Link to="/contact">email</Link>
