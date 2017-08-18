@@ -1,3 +1,143 @@
-.App {
+.tictactoe-container {
+  background-color: white;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  color: black;
+}
+
+.game-title {
   text-align: center;
 }
+
+.game-container {
+  width: 75vw;
+}
+
+.time-machine > p {
+  text-align: center;
+  width: 33.3333333333333333333333333333333333333333333%;
+}
+
+.time-machine > ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.time-machine > ul > li {
+  padding-left: 5px;
+  display: inline;
+  width: 6.6666666666666666666%;
+}
+
+.time-machine > ul > li > a {
+  color: black;
+}
+
+.time-machine {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  color: black;
+}
+
+.board-container {
+  width: 100%;
+  height: 75vw;
+}
+
+@media (min-width: 500px) {
+  .game-container {
+    width: 60vw;
+  }
+  .board-container {
+    height: 60vw;
+  }
+}
+
+@media (min-width: 700px) {
+  .game-container {
+    width: 50vw;
+  }
+  .board-container {
+    height: 50vw;
+  }
+}
+
+@media (min-width: 900px) {
+  .game-container {
+    width: 40vw;
+  }
+  .board-container {
+    height: 40vw;
+  }
+}
+
+@media (min-width: 1100px) {
+  .game-container {
+    width: 35vw;
+  }
+  .board-container {
+    height: 35vw;
+  }
+}
+
+@media (min-width: 1300px) {
+  .game-container {
+    width: 30vw;
+  }
+  .board-container {
+    height: 30vw;
+  }
+}
+
+.game-turn {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.turn-display {
+  width: 33.33333333333333333333333333%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.tictactoe-turn-container {
+  width: 33.33333333333333333333333333%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  align-items: center;
+  -webkit-align-items: center;
+  text-align: center;
+}
+
+.tictactoe-turn-container > i {
+  cursor: pointer;
+  font-size: 5em;
+}
+
+
+
+

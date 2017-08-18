@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Board from './Board/Board';
 
-import './style.css';
-
 export default class TicTacToePage extends Component {
   constructor() {
     super();
@@ -14,6 +12,7 @@ export default class TicTacToePage extends Component {
       stepNumber: 0,
       playerIsX: null,
       xIsNext: true,
+      difficulty: 'hard',
     };
   }
   handleClick(i) {
@@ -60,8 +59,28 @@ export default class TicTacToePage extends Component {
       return;
     }
     
-    this.minimax(squares, 0);
-    let numberToUse = this.choice;
+    let numberToUse;
+    
+    if (this.state.difficulty === 'hard') {
+      console.log("Hard computer playing now");
+      this.minimax(squares, 0);
+      numberToUse = this.choice;
+    } else {
+      console.log("Easier computer playing now");
+      // Old randomised selection
+      // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      let list = [];
+      for (let i = 0; i < squares.length; i++) {
+        if (squares[i] == null) {
+          list.push(i);
+        }
+      }
+      // Get random number
+      let randomNum = getRandomNumber(list.length);
+      numberToUse = list[randomNum];
+      // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    }
+    
     
     squares[numberToUse] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
@@ -101,6 +120,16 @@ export default class TicTacToePage extends Component {
       if (!playerChoice) {
         this.computerTakesTurn();
       }
+    })
+  }
+  setDifficulty(choice) {
+    this.setState({
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      stepNumber: 0,
+      xIsNext: true,
+      difficulty: choice,
     })
   }
   score(squares, depth) {
@@ -190,8 +219,8 @@ export default class TicTacToePage extends Component {
     
     const moves = history.map((step, move) => {
       const desc = move ? 
-          move : 
-          0;
+          'Move #' + move : 
+          'Game start';
       return (
         <li key={move}>
           <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
@@ -203,8 +232,8 @@ export default class TicTacToePage extends Component {
     if (winner) {
       status = 'Winner is ' + (!this.checkIfPlayersTurn(this.state.playerIsXx, this.state.xIsNext) ? 'Player' : 'Computer');
     } else {
-      console.log(this.state.playerIsX);
-      if (this.state.playerIsX === null) {
+      console.log(this.state.stepNumber);
+      if (this.state.stepNumber === 0) {
         status = 'Please choose playing order.';
       } else {
         status = 'Next player: ' + (this.checkIfPlayersTurn(this.state.playerIsX, this.state.xIsNext) ? 'Player' : 'Computer');
@@ -212,40 +241,33 @@ export default class TicTacToePage extends Component {
     }
     
     return (
-      <div className="tictactoe-container">
-        <div className="game-title">
-          <h1> Unbeatable TicTacToe </h1>
-          <p>Try to beat me.</p>
+      <div className="game">
+        <div className="game-board">
+          <Board 
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+          />
         </div>
-      
-        <div className="game-container">
-      
-          <div className="time-machine">
-            <p> Time Machine! </p>
-            <ul>{moves}</ul>
-          </div>
-      
-          <div className="board-container">
-            <Board 
-              squares={current.squares}
-              onClick={(i) => this.handleClick(i)}
-            />
-          </div>
-      
+        <div className="game-info">
+          <div>{status}</div>
+          <ol>{moves}</ol>
         </div>
-      
-        <div className="game-turn">
-          <div className="tictactoe-turn-container">
-            <i className="material-icons" onClick={() => this.setPlayer('X')}>face</i>
-            <p>You start over.</p>
-          </div>
-          <span className="turn-display">{status}</span>
-          <div className="tictactoe-turn-container">
-            <i className="material-icons" onClick={() => this.setPlayer('O')}>computer</i>
-            <p>Computer start over.</p>
-          </div>
+        <div className="player-info">
+          <text>
+            Choose who starts:<br/>
+            <span className="" onClick={() => this.setPlayer('X')}> You start over </span><br/>
+            or <br/>
+            <span onClick={() => this.setPlayer('O')}> Computer starts over</span>.
+          </text>
         </div>
-        
+        <div className="difficulty">
+          <text>
+            Choose your difficulty: <br/>
+              <span className="" onClick={() => this.setDifficulty('easy')}> Easy </span><br/>
+              or <br/>
+              <span className="" onClick={() => this.setDifficulty('hard')}> Hard </span><br/>
+          </text>
+        </div>
       </div>
     );
   }
@@ -271,4 +293,8 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function getRandomNumber(max) {
+  return Math.floor(Math.random() * max);
 }
