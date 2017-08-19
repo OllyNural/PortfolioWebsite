@@ -16,11 +16,7 @@
   -webkit-flex-direction: row;
 }
 
-.status {
-  margin-bottom: 10px;
-}
-
-.square {
+.board-row > .square {
   border-radius: 5%;
   font-weight: bold;
   height: 100%;
@@ -33,10 +29,38 @@
   width: 33.3333333333333333333333333333333333333333333333333333333333%;
 }
 
-.square:focus {
+.tictactoe-button {
+  font-family: sans-serif;
+}
+
+.board-row > .square:focus {
   outline: none;
+}
+
+.board-row > .square > .green {
+  color: #45B69C;
+}
+
+.board-row > .square > .red {
+  color: #EA526F;
 }
 
 .kbd-navigation .square:focus {
   background: #ddd;
+}
+
+.board-row > button {
+  font-size: 20vw;
+}
+
+@media (min-width: 700px) {
+  .board-row > button {
+    font-size: 14vw;
+  }
+}
+
+@media (min-width: 1100px) {
+  .board-row > button {
+    font-size: 10vw;
+  }
 }

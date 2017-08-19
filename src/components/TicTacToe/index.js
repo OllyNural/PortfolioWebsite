@@ -32,7 +32,7 @@ export default class TicTacToePage extends Component {
     }
     return false;
   }
-  takePlayerTurn(i) {
+  takePlayerTurn(i, callback) {
     let history = this.state.history.slice(0, this.state.stepNumber + 1);
     let current = history[history.length - 1];
     let squares = current.squares.slice();
@@ -48,10 +48,14 @@ export default class TicTacToePage extends Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     }, function() {
-      this.computerTakesTurn();
+      if (this.getAllPossibleMoves(squares).length > 0) {
+        this.computerTakesTurn();
+      }
     });
+    
   }
   computerTakesTurn() {
+    console.log("Not getting here, is it?");
     let history = this.state.history.slice(0, this.state.stepNumber + 1);
     let current = history[history.length - 1];
     let squares = current.squares.slice();
@@ -105,7 +109,16 @@ export default class TicTacToePage extends Component {
   }
   score(squares, depth) {
     let winner = calculateWinner(squares);
-    let isCurrentPlayer = this.checkIfPlayersTurn(this.state.playerIsX, (this.state.xIsNext || (depth % 2 === 1)))
+    let isCurrentPlayer;
+    // When we check the score we need to know:
+    //  Whose turn it is
+    //  If the player is winning we want to do depth - 10
+    //  If computer is winning we want 10 - depth
+    if (this.state.playerIsX) {
+      isCurrentPlayer = this.checkIfPlayersTurn(this.state.playerIsX, (depth % 2 === 1));
+    } else {
+      isCurrentPlayer = this.checkIfPlayersTurn(this.state.playerIsX, (depth % 2 === 0))
+    }
     if (winner && !isCurrentPlayer) {
       return 10 - depth;
     } else if (winner && isCurrentPlayer) {
@@ -122,10 +135,12 @@ export default class TicTacToePage extends Component {
     depth += 1;
     let scores = [];
     let moves = [];
-    let currentXIsNext = (this.state.xIsNext || (depth % 2 === 0));
-    
-    // Populate scores array w/ recursion
-    // Get all possible moves from this current location
+    let currentXIsNext;
+    if (this.state.playerIsX) {
+      currentXIsNext = (depth % 2 === 0);
+    } else {
+      currentXIsNext = (depth % 2 === 1);
+    }
     let list = this.getAllPossibleMoves(squares);
     if (list.length === 0) {
       return 0;
@@ -139,6 +154,7 @@ export default class TicTacToePage extends Component {
     //  add to moves[]
       moves.push(list[i]);
     }
+    
     
     // Min/Max Calc - check turn and choose biggest or lowest
     let choice_index;
@@ -160,7 +176,7 @@ export default class TicTacToePage extends Component {
     }
     return list;
   }
-  // Bit of code duplication here but is MUCH clearer than trying to abstract out. Sorry!
+  // Bit of code duplication here but is MUCH clearer than trying to abstract out.
   findIndexOfGreatest(array) {
     let greatest;
     let indexOfGreatest;
@@ -200,10 +216,12 @@ export default class TicTacToePage extends Component {
     })
     
     let status;
+    console.log(this.state.stepNumber);
     if (winner) {
-      status = 'Winner is ' + (!this.checkIfPlayersTurn(this.state.playerIsXx, this.state.xIsNext) ? 'Player' : 'Computer');
+      status = 'Winner is ' + (!this.checkIfPlayersTurn(this.state.playerIsX, this.state.xIsNext) ? 'Player' : 'Computer');
+    } else if (this.state.stepNumber === 9) {
+      status = 'Draw!';
     } else {
-      console.log(this.state.playerIsX);
       if (this.state.playerIsX === null) {
         status = 'Please choose playing order.';
       } else {
@@ -214,14 +232,14 @@ export default class TicTacToePage extends Component {
     return (
       <div className="tictactoe-container">
         <div className="game-title">
-          <h1> Unbeatable TicTacToe </h1>
+          <h1> TicTacToe </h1>
           <p>Try to beat me.</p>
         </div>
       
         <div className="game-container">
       
           <div className="time-machine">
-            <p> Time Machine! </p>
+            <p> Time Machine: </p>
             <ul>{moves}</ul>
           </div>
       
@@ -229,18 +247,19 @@ export default class TicTacToePage extends Component {
             <Board 
               squares={current.squares}
               onClick={(i) => this.handleClick(i)}
+              playerIsX={this.state.playerIsX}
             />
           </div>
       
         </div>
       
         <div className="game-turn">
-          <div className="tictactoe-turn-container">
+          <div className="tictactoe-turn-container tictactoe-player">
             <i className="material-icons" onClick={() => this.setPlayer('X')}>face</i>
             <p>You start over.</p>
           </div>
           <span className="turn-display">{status}</span>
-          <div className="tictactoe-turn-container">
+          <div className="tictactoe-turn-container tictactoe-computer">
             <i className="material-icons" onClick={() => this.setPlayer('O')}>computer</i>
             <p>Computer start over.</p>
           </div>

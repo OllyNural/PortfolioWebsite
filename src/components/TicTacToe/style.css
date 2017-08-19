@@ -112,8 +112,24 @@
   -webkit-align-items: center;
 }
 
+@media (min-width: 700px) {
+  .game-turn {
+    width: 75%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .game-turn {
+    width: 65%;
+  }
+}
+
+
 .turn-display {
   width: 33.33333333333333333333333333%;
+  font-size: 1em;
+  text-align: center;
+  font-weight: bold;
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
@@ -135,9 +151,27 @@
 
 .tictactoe-turn-container > i {
   cursor: pointer;
-  font-size: 5em;
+  font-size: 5em;  
 }
 
+.tictactoe-player > i {
+  color: #45B69C;
+  border-radius: 50%;
+}
 
+.tictactoe-player > i:hover {
+  text-shadow:
+    10px 0 80px #45B69C;
+}
+
+.tictactoe-computer > i {
+  border-radius: 50%;
+  color: #EA526F;
+}
+
+.tictactoe-computer > i:hover {
+  text-shadow:
+    10px 0 80px #EA526F;
+}
 
 
