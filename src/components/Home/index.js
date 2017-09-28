@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Layout from '../Layout/Layout'
 
 import './style.css';
-import  './font-awesome/css/font-awesome.css';
+import  './font-awesome/css/font-awesome.min.css';
 
 class App extends Component {
   render() {
