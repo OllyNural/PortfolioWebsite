@@ -10,9 +10,12 @@
   display: -webkit-flex;
   justify-content: center;
   -webkit-justify-content: center;
-  align-items: center;
-  -webkit-align-items: center;
-  display: relative;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+}
+
+.project-link-container {
+  width: 100%;
 }
 
 .project-link:hover, .project-link.hover {

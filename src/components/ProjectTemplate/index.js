@@ -5,7 +5,7 @@ import NotFoundPage from '../NotFound';
 import Title from '../Layout/Title';
 import Button from './Button/Button';
 import Background from './Background/Background';
-import Tech from './Tech/Tech';
+import HowItWorks from './HowItWorks/HowItWorks';
 
 import './style.css';
 
@@ -13,17 +13,21 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      project: "test",
+      project: undefined,
     }
   }
   componentDidMount() {
+    // Do a quick lookup to get our project page
+    // If it's nothing then return 404 else return page
     const url = this.props.routeParams.project;
-    let project = require(`../ProjectList/${url}`);
+    let project = require(`../ProjectData/${url}`);
     project = project[`${url}`];
     this.setState({project})
   }
   render() {
     if (this.state.project !== undefined) {
+      const projectName = this.state.project.name;
+      const imageSrcToUse = require('../ProjectData/Images/' + projectName + '.png');
       return (
         <Layout>
           <div className="page-container">
@@ -33,15 +37,16 @@ export default class App extends Component {
                 <div className="project-background">
                   <h3>Background</h3>
                   <Background sentences={this.state.project.background} />
+                  <h3>How it works</h3>
+                  <HowItWorks sentences={this.state.project.howItWorks} />
                 </div>
                 <div className="project-links">
+        {/*<div className="project-image-container">
+                    <img className="portfolio-image" src={imageSrcToUse} alt={this.state.project.name} />
+                  </div> */}
                   <Button link={this.state.project.demo} text="Demo"/>
                   <Button link={this.state.project.code} text="Code"/>
                   <Button link={this.state.project.blog} text="Blog"/>
-                </div>
-                <div className="project-tech">
-                  <h3>Tech used</h3>
-                  <Tech tech={this.state.project.tech} />
                 </div>
               </div>
             </div>

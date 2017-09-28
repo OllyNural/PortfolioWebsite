@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Layout from '../Layout/Layout';
 import Title from '../Layout/Title';
 import Image from './Image/Image';
-import { Data } from '../ProjectList/Data';
+import { Data } from '../ProjectData/Data';
 
 import './style.css';
 
@@ -28,7 +28,8 @@ class Work extends Component {
       allPortfolioImages.push(<Image 
                               key={element.id} title={element.title} 
                               name={element.name}
-                              demo={element.demo} />);
+                              demo={element.demo}
+                              src={element.src} />);
     });
     return (
         <Layout>

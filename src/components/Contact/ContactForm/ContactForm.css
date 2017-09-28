@@ -43,11 +43,6 @@ form > div > textarea {
   transition: border 0.3s;
   background-color: #363946;
   color: #fdfdfd;
-  transition: all 1s cubic-bezier(.45,0,0,1);
-  -webkit-transition: all 1s cubic-bezier(.45,0,0,1);
-  -moz-transition: all 1s cubic-bezier(.45,0,0,1);
-  -ms-transition: all 1s cubic-bezier(.45,0,0,1);
-  -o-transition: all 1s cubic-bezier(.45,0,0,1);
 }
 
 .form-input:focus,.form-input.focus {

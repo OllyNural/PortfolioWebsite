@@ -15,8 +15,6 @@
   display: -webkit-flex;
   -webkit-flex-direction: column;
   flex-direction: column;
-  -webkit-justify-content: flex-end;
-  justify-content: flex-end;
   width: 30%;
 }
 
@@ -31,4 +29,9 @@
 
 .project-background > h3 {
   margin-top: 0px;
+}
+
+.project-image-container {
+  width: 60%;
+  padding-bottom: 20px;
 }
