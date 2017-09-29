@@ -40,5 +40,5 @@ html, body {
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
   padding-top: 17vh;
-  margin-bottom: 100%;
+  margin-bottom: 100px;
 }
