@@ -18,7 +18,7 @@ export default class Header extends Component {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
-  handleScroll(e) {
+  handleScroll() {
     if (window.top.pageYOffset !== 0) {
       document.querySelector('.header-nav').style.height = '10vh';
       document.querySelector('.app-logo').style.height = '8vh';
