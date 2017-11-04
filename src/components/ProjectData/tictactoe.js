@@ -2,6 +2,7 @@ export const tictactoe = {
   id: 0, 
   name: 'tictactoe', 
   title: 'Creating an unbeatable TicTacToe opponent', 
+  src: 'tictactoe.png',
   demo: '/tictactoe/demo',
   code: null,
   blog: null,

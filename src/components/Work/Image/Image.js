@@ -5,9 +5,9 @@ import './Image.css';
 
 export default class Image extends React.Component {
   render() {
-    
     // Generic require statement to dynamically require the right image
-    const imageSrcToUse = require('../../ProjectData/Images/' + this.props.name + '.png');
+    const imageSrcToUse = require('../../ProjectData/Images/' + this.props.src);
+
     return (
       <div className="portfolio-item">
         <div className="portfolio-item-container">

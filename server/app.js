@@ -28,6 +28,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'))
 });
 
+// POST Request to send an email
 app.post('/api/contact', (req, res) => {
   console.log("Hit api");
   let data = req.body;

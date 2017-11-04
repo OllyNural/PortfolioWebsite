@@ -7,6 +7,10 @@
   }
 }
 
+.title {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .title > hr {
   background-color: #fdfdfd;
   border: 0px;

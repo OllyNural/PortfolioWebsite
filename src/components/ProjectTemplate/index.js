@@ -20,14 +20,19 @@ export default class App extends Component {
     // Do a quick lookup to get our project page
     // If it's nothing then return 404 else return page
     const url = this.props.routeParams.project;
-    let project = require(`../ProjectData/${url}`);
-    project = project[`${url}`];
+    let project;
+    try {
+      project = require(`../ProjectData/${url}`);
+      project = project[`${url}`];
+    } catch (e) {
+      project = undefined;
+    }
     this.setState({project})
   }
   render() {
     if (this.state.project !== undefined) {
       const projectName = this.state.project.name;
-      const imageSrcToUse = require('../ProjectData/Images/' + projectName + '.png');
+      const imageSrcToUse = require('../ProjectData/Images/' + this.state.project.src);
       return (
         <Layout>
           <div className="page-container">
