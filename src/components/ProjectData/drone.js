@@ -6,7 +6,7 @@ export const drone = {
   demo: null,
   code: 'https://github.com/ChristopherAkroyd/CO600-Droners',
   blog: null,
-  background: [,
+  background: [
     'As my final year project at University, I worked within a team of 4 to design and create an autonomous drone system, capable of both transporting a package between different pick up points, and avoiding obstacles along the way.',
   ],
   howItWorks: [

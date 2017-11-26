@@ -43,7 +43,7 @@ class App extends Component {
       })
     }).then((response) => {
       console.log(response);
-      if (response.status === 404) {
+      if (response.status === 200) {
         this.setState({hasEmailSent: true},() => {
           localStorage.setItem('hasEmailSent', JSON.stringify('true'))
         });

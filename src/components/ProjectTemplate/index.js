@@ -31,8 +31,6 @@ export default class App extends Component {
   }
   render() {
     if (this.state.project !== undefined) {
-      const projectName = this.state.project.name;
-      const imageSrcToUse = require('../ProjectData/Images/' + this.state.project.src);
       return (
         <Layout>
           <div className="page-container">

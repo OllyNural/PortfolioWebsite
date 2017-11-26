@@ -8,7 +8,7 @@ import  './font-awesome/css/font-awesome.min.css';
 class App extends Component {
   render() {
     return (
-        <Layout keyId="homekey">
+        <Layout>
           <div className="single-page-container">
             <div className="home-container">
               <div className="home-title">

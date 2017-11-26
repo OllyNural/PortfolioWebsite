@@ -1,20 +1,21 @@
-.page-header {
-  display: flex;
-  display: -webkit-flex;
-}
-
-.header-nav {
-  position: fixed;
-  z-index: 1;
-  width: 100%;
+header {
+  z-index: 10;
   height: 15vh;
+  width: 100%;
+  position: fixed;
   display: none;
-  background-color: #160C28;
   transition: all 0.5s cubic-bezier(.45,0,0,1);
   -webkit-transition: all 0.5s cubic-bezier(.45,0,0,1);
   -moz-transition: all 0.5s cubic-bezier(.45,0,0,1);
   -ms-transition: all 0.5s cubic-bezier(.45,0,0,1);
   -o-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  background-color: #160C28;
+}
+
+.header-nav {
+  z-index: 11;
+  width: 100%;
+  height: 100%;
 }
 
 .app-logo {
@@ -30,7 +31,7 @@
   left: 4vh;
   top: 2.5vh;
   position: fixed;
-  z-index: 2;
+  z-index: 12;
 }
 
 @media (min-width: 600px) {
@@ -291,7 +292,7 @@ li>a:hover:before {
     display: none;
   }
   
-  .header-nav {
+  header {
     display: flex;
     display: -webkit-flex;
     align-items: center;

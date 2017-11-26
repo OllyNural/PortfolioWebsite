@@ -30,9 +30,7 @@ app.get('*', (req, res) => {
 
 // POST Request to send an email
 app.post('/api/contact', (req, res) => {
-  console.log("Hit api");
   let data = req.body;
-  console.log(req.body);
   
   // Init Mail Options to send
   let mailOptions = {
@@ -44,9 +42,8 @@ app.post('/api/contact', (req, res) => {
   
   transport.sendMail(mailOptions, (error, info) => {
     if (error) {
-      return console.log(error);
+      return error;
     } else {
-      console.log('Message %s sent: %s', info.messageId, info.response);
       return true;
     }
   });

@@ -20,11 +20,11 @@ export default class Header extends Component {
   }
   handleScroll() {
     if (window.top.pageYOffset !== 0) {
-      document.querySelector('.header-nav').style.height = '10vh';
+      document.querySelector('header').style.height = '10vh';
       document.querySelector('.app-logo').style.height = '8vh';
       document.querySelector('.logo-container').style.top = '1vh';
     } else {
-      document.querySelector('.header-nav').style.height = '15vh';
+      document.querySelector('header').style.height = '15vh';
       document.querySelector('.app-logo').style.height = '10vh';
       document.querySelector('.logo-container').style.top = '2.5vh';
     }

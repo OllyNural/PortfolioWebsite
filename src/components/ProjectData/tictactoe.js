@@ -6,7 +6,7 @@ export const tictactoe = {
   demo: '/tictactoe/demo',
   code: null,
   blog: null,
-  background: [,
+  background: [
     'To best learn <a href="https://facebook.github.io/react/" target="_blank"><span class="title-name">React.js</span></a> (and with the aim of building this website using it), I followed a <a href="https://facebook.github.io/react/tutorial/tutorial.html" target="_blank"><span class="title-name">Facebook tutorial</span></a> of creating a simple TicTacToe game allowing 2 players to play against each other. This helped me understand the basics of the library, however I wanted to further this implementation.',
     'During my final year of University, I learned the basic concepts of various puzzle-solving algorithms including the <a href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank"><span class="title-name">A*</span></a> and <a href="https://en.wikipedia.org/wiki/Minimax" target="_blank"><span class="title-name">Minimax</span></a> algorithms, and as part of coursework I created a tile-puzzle solver using an A* algorithm with a custom heuristic. It therefore seemed a natural progression to test out the MiniMax algorithm on a well-suited TicTacToe game, as you can view in the <a href="/tictactoe/demo" target="_blank"><span class="title-name">demo</span></a>.'
   ],

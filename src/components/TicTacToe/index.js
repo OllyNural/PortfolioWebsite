@@ -17,13 +17,8 @@ export default class TicTacToePage extends Component {
     };
   }
   handleClick(i) {
-    if (this.state.playerIsX === null) {
-      console.log("Please select the playing order.");
-    } else if (this.checkIfPlayersTurn(this.state.playerIsX, this.state.xIsNext)) {
-      // If players turn to play!
+    if (this.checkIfPlayersTurn(this.state.playerIsX, this.state.xIsNext)) {
       this.takePlayerTurn(i);
-    } else {
-      // Computers turn, do nothing
     };
   }
   checkIfPlayersTurn(playerIsX, xIsNext) {
@@ -55,7 +50,6 @@ export default class TicTacToePage extends Component {
     
   }
   computerTakesTurn() {
-    console.log("Not getting here, is it?");
     let history = this.state.history.slice(0, this.state.stepNumber + 1);
     let current = history[history.length - 1];
     let squares = current.squares.slice();
@@ -78,7 +72,6 @@ export default class TicTacToePage extends Component {
   }
   jumpTo(step) {
     if (this.state.playerIsX === null) {
-      console.log("Please select the playing order.");
       return;
     }
     let xIsNext = (step % 2) ? false : true;
@@ -216,7 +209,6 @@ export default class TicTacToePage extends Component {
     })
     
     let status;
-    console.log(this.state.stepNumber);
     if (winner) {
       status = 'Winner is ' + (!this.checkIfPlayersTurn(this.state.playerIsX, this.state.xIsNext) ? 'Player' : 'Computer');
     } else if (this.state.stepNumber === 9) {
