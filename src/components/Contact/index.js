@@ -37,9 +37,9 @@ class App extends Component {
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
-        name: document.getElementById('form-name').value,
-        email: document.getElementById('form-email').value,
-        message: document.getElementById('form-message').value
+        name: this.state.name,
+        email: this.state.email,
+        message: this.state.message
       })
     }).then((response) => {
       console.log(response);

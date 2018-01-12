@@ -95,21 +95,12 @@ form > div > textarea {
   color: yellow;
 }
 
-textarea:hover, 
-input:hover, 
-textarea:active, 
-input:active, 
-textarea:focus, 
-input:focus,
-button:focus,
-button:active,
-button:hover,
-label:focus,
-.btn:active,
-.btn.active
+.form-input:hover,
+.form-input:active,
+.form-input:focus
 {
     outline:0px !important;
-    -webkit-appearance:none;
+    -webkit-appearance: none;
 }
 
 .form-submitted > h3 {

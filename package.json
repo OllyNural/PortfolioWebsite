@@ -11,8 +11,11 @@
     "nodemailer": "^4.0.1",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
+    "react-dnd": "^2.5.4",
+    "react-dnd-html5-backend": "^2.5.4",
     "react-dom": "^15.6.1",
     "react-konva": "1.1.6",
+    "react-particles-js": "2.1.0",
     "react-router": "^2.6.0",
     "react-scripts": "1.0.10"
   },

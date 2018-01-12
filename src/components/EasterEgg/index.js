@@ -7,13 +7,14 @@ import Title from '../Layout/Title';
 import './style.css';
 
 class CustomRect extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <Rect
-        x={10}
-        y={10}
-        width={100}
-        height={100}
+        width={this.props.width/10}
+        height={this.props.height/10}
         fill='green'
       />
     )
@@ -21,18 +22,31 @@ class CustomRect extends Component {
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { width: '0', height: '0' }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+  }
+  componentDidMount() {
+    this.updateWindowDimensions()
+    window.addEventListener('resize', this.updateWindowDimensions)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions)
+  }
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight })
+  }
   render() {
     return (
-        <Layout>
-          <div className="easter-game-container">
-            <Stage width={500} height={500}>
-              <Layer>
-                <CustomRect />
-              </Layer>
-            </Stage>
-            {/* <canvas height="500px" width="500px"></canvas> */}
-          </div>
-        </Layout>
+      // Don't need <Layout> Tag as we are just rendering this element withn the Layout tag, not as a child of it
+        <div className="easter-game-container">
+          <Stage width={this.state.width} height={this.state.height}>
+            <Layer>
+              <CustomRect width={this.state.width} height={this.state.height}/>
+            </Layer>
+          </Stage>
+        </div>
     );
   }
 }

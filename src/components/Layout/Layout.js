@@ -1,30 +1,32 @@
-import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { Component } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import Particles from 'react-particles-js'
 
-import Header from './Header';
-import Footer from './Footer';
-import EasterEgg from '../EasterEgg';
+import Header from './Header'
+import Footer from './Footer'
+import EasterEgg from '../EasterEgg'
+import Config from '../../config'
 
 import './Layout.css';
 
 export default class Layout extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       mounted: false,
       kCode: ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"],
       pointer: 0,
       isKCode: false
-    };
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    }
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
   handleKeyPress(event) {
-    if (this.state.isKCode) return;
+    if (this.state.isKCode) return
     // If the input letter relates to the current correct konami code letter
     if (event.key === this.state.kCode[this.state.pointer]) {
       // If we are at the end of the konami code
       if (this.state.pointer === this.state.kCode.length - 1) {
-        this.setState({isKCode: true});
+        this.setState({isKCode: true})
       }
       this.setState({pointer: this.state.pointer + 1})
     } else {
@@ -32,23 +34,25 @@ export default class Layout extends Component {
     }
   }
   componentDidMount() {
-    this.setState({ mounted: true });
+    this.setState({ mounted: true })
   }
   render() {
-    let child;
+    let child
     if (this.state.mounted && !this.state.isKCode) {
-      child = <div> {this.props.children} </div>;
+      child = <div> {this.props.children} </div>
     } else if (this.state.mounted && this.state.isKCode) {
       child = <div> <EasterEgg /> </div>
     }
     return (
       <div className="app-container" onKeyDown={this.handleKeyPress} tabIndex="0">
-        <Header />
-        <ReactCSSTransitionGroup transitionName="page" transitionEnterTimeout={1000} transitionLeaveTimeout={100000}>
-          {child}
-        </ReactCSSTransitionGroup>
-        <Footer />
+        <Particles params={Config} className='particle-container' />
+          <Header />
+          <ReactCSSTransitionGroup transitionName="page" transitionEnterTimeout={1000} transitionLeaveTimeout={100000}>
+            {child}
+          </ReactCSSTransitionGroup>
+          <Footer />
       </div>
-    );
+      
+    )
   }
 }
