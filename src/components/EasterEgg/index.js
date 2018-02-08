@@ -7,9 +7,6 @@ import Title from '../Layout/Title';
 import './style.css';
 
 class CustomRect extends Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
       <Rect
@@ -39,7 +36,7 @@ class App extends Component {
   }
   render() {
     return (
-      // Don't need <Layout> Tag as we are just rendering this element withn the Layout tag, not as a child of it
+      // Don't need <Layout> Tag as we are just rendering this element within the Layout tag, not as a child of it
         <div className="easter-game-container">
           <Stage width={this.state.width} height={this.state.height}>
             <Layer>
