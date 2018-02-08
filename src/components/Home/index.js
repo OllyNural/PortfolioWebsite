@@ -16,7 +16,7 @@ class App extends Component {
               </div>
         
               <div className="home-introduction">
-                <p>I am a Java and Full Stack Javascript developer.</p>
+                <p>I am a Java and Full Stack Javascript developer based in London.</p>
           
                 <p>Please have a look around, or visit my social media pages below.</p>
               </div>  
