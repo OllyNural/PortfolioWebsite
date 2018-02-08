@@ -1,0 +1,30 @@
+.portfolio-item {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: left;
+  -webkit-justify-content: left;
+  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+}
+
+.portfolio-item-title {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.4em;
+    width: 100%;
+}
+
+.portfolio-item-title>a:hover {
+  color: yellow;
+}
+
+.portfolio-item-secText {
+    font-style: italic;
+    font-size: 1em;
+    width: 100%;
+}

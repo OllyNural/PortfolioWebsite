@@ -2,42 +2,42 @@ import React, { Component } from 'react';
 
 import Layout from '../Layout/Layout';
 import Title from '../Layout/Title';
-import Image from './Image/Image';
+// import Image from './Image/Image';
+import PortfolioLink from './PortfolioLink/PortfolioLink'
 import { Data } from '../ProjectData/Data';
 
 import './style.css';
 
 class Work extends Component {
-  getData() {
-    const useFakeData = false;
+  getDataTest() {
+    const useFakeData = false
+    let dataToReturn
     if (useFakeData) {
-      return [
-        {id: 0, name: 'tictactoe', title: 'Coding an unbeatable TicTacToe opponent', demo: 'tictactoe/demo'},
-        {id: 1, name: 'tictactoe', title: 'Broken link test', demo: 'tictactoe/demo'},
-        {id: 2, name: 'tictactoe', title: 'Coding an unbeatable TicTacToe opponent', demo: 'tictactoe/demo'},
-        {id: 3, name: 'tictactoe', title: 'Coding an unbeatable TicTacToe opponent', demo: 'tictactoe/demo'},
-        {id: 4, name: 'tictactoe', title: 'Coding an unbeatable TicTacToe opponent', demo: 'tictactoe/demo'}
-      ];
+      dataToReturn = [
+        {id: 0, name: 'tictactoe', title: 'Coding an unbeatable TicTacToe opponent', secText: 'Oh, not another tictactoe demo...'},
+        {id: 1, name: 'drone', title: 'Autonomous Drones, delievering blood to hospitals', secText: 'Saving lives one syntax error at a time'}
+      ]
     } else {
-      return Data;
+      dataToReturn = Data
     }
+    return dataToReturn
   }
   render() {
-    const allPortfolioImages = [];
-    this.getData().forEach(element => {
-      allPortfolioImages.push(<Image 
-                              key={element.id} title={element.title} 
+    const allPortfolioItems = [];
+    this.getDataTest().forEach(element => {
+      allPortfolioItems.push(<PortfolioLink
+                              key={element.id} title={element.title}
                               name={element.name}
-                              demo={element.demo}
-                              src={element.src} />);
-    });
+                              secText={element.secText}
+      />)
+    })
     return (
         <Layout>
           <div className="page-container">
             <div className="work-container">
               <Title title="Work Portfolio" />
               <div className="portfolio-container">
-                  { allPortfolioImages }
+                {allPortfolioItems}
               </div>
             </div>
           </div>

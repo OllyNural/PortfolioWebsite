@@ -23,3 +23,11 @@
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
 }
+
+.portfolio-container {
+  margin-top: 20px;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
