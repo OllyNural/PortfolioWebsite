@@ -9,7 +9,7 @@ export default class HowItWorks extends React.Component {
       sentencesToRender.push(<p dangerouslySetInnerHTML={{__html: sentence}} key={sentence}></p>)
     });
     return (
-      <div className="how-it-works">
+      <div className="v1-how-it-works">
         {sentencesToRender}
       </div>
     )

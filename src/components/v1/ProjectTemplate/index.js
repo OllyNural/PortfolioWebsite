@@ -34,17 +34,17 @@ export default class App extends Component {
     if (this.state.project !== undefined) {
       return (
         <Layout>
-          <div className="page-container">
-            <div className="project-container">
+          <div className="v1-page-container">
+            <div className="v1-project-container">
               <Title title={this.state.project.title} />
-              <div className="project-information">
-                <div className="project-background">
+              <div className="v1-project-information">
+                <div className="v1-project-background">
                   <h3>Background</h3>
                   <Background sentences={this.state.project.background} />
                   <h3>How it works</h3>
                   <HowItWorks sentences={this.state.project.howItWorks} />
                 </div>
-                <div className="project-links">
+                <div className="v1-project-links">
         {/*<div className="project-image-container">
                     <img className="portfolio-image" src={imageSrcToUse} alt={this.state.project.name} />
                   </div> */}

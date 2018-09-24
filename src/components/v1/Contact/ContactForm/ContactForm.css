@@ -1,4 +1,4 @@
-.contact-form > form {
+.v1-contact-form > form {
   display: flex;
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -18,7 +18,7 @@ form > div > textarea {
   height: 7em;
 }
 
-.form-label {
+.v1-form-label {
   opacity: 0.3;
   position: absolute;
   top: 12px;
@@ -26,7 +26,7 @@ form > div > textarea {
   cursor: text;
 }
 
-.requirements {
+.v1-requirements {
   padding: 0 30px 0 50px;
   color: #999;
   max-height: 0;
@@ -37,7 +37,7 @@ form > div > textarea {
   font-style: italic;
 }
 
-.form-input {
+.v1-form-input {
   padding: 10px;
   border: solid 2px #fdfdfd;
   transition: border 0.3s;
@@ -45,27 +45,27 @@ form > div > textarea {
   color: #fdfdfd;
 }
 
-.form-input:focus,.form-input.focus {
+.v1-form-input:focus,.v1-form-input.focus {
   border: solid 2px yellow;
 }
 
-.form-input:focus + .form-label {
+.v1-form-input:focus + .v1-form-label {
     opacity: 0;
 }
 
-.form-input:valid + .form-label {
+.v1-form-input:valid + .v1-form-label {
   opacity: 0;
 }
 
-.email-input:valid + .form-label {
+.v1-email-input:valid + .v1-form-label {
   opacity: 0;
 }
 
-.email-input:invalid:not(:focus):not(:placeholder-shown) + .form-label {
+.v1-email-input:invalid:not(:focus):not(:placeholder-shown) + .v1-form-label {
   opacity: 0;
 }
 
-.email-input:invalid:not(:focus):not(:placeholder-shown) {
+.v1-email-input:invalid:not(:focus):not(:placeholder-shown) {
   background: red; /* For browsers that do not support gradients */
   background: -webkit-gradient(linear, 0 0, 100% 0, from(#363946), to(rgba(255,0,0,1)), color-stop(60%, #363946));
   background: -o-gradient(linear, 0 0, 100% 0, from(#363946), to(rgba(255,0,0,1)), color-stop(60%, #363946));
@@ -73,15 +73,12 @@ form > div > textarea {
   background: gradient(linear, 0 0, 100% 0, from(#363946), to(rgba(255,0,0,1)), color-stop(60%, #363946));
 }
 
-.email-input:invalid:not(:focus):not(:placeholder-shown) ~ .requirements {
-} 
-
-.email-input:invalid:focus:not(:placeholder-shown) ~ .requirements {
+.v1-email-input:invalid:focus:not(:placeholder-shown) ~ .v1-requirements {
   max-height: 200px;
   padding: 5px 30px 5px 50px;
 }
 
-.submit-button {
+.v1-submit-button {
   width: 50%;
   padding: 10px;
   color: #fdfdfd;
@@ -90,19 +87,20 @@ form > div > textarea {
   cursor: pointer;
 }
 
-.submit-button:hover, .submit-button.hover {
+.v1-submit-button:hover, .v1-submit-button.hover {
   border-color: yellow;
   color: yellow;
 }
 
-.form-input:hover,
-.form-input:active,
-.form-input:focus
+.v1-form-input:hover,
+.v1-form-input:active,
+.v1-form-input:focus
 {
     outline:0px !important;
+    appearance: none;
     -webkit-appearance: none;
 }
 
-.form-submitted > h3 {
+.v1-form-submitted > h3 {
   margin-top: 0px;
 }

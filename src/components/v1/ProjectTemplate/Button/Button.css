@@ -1,4 +1,4 @@
-.project-link {
+.v1-project-link {
   width: 100%;
   padding: 10px;
   color: #fdfdfd;
@@ -14,27 +14,27 @@
   -webkit-align-items: flex-start;
 }
 
-.project-link-container {
+.v1-project-link-container {
   width: 100%;
 }
 
-.project-link:hover, .project-link.hover {
+.v1-project-link:hover, .v1-project-link.hover {
   border-color: yellow;
   color: yellow;
 }
 
-.disabled {
+.v1-disabled {
   pointer-events: none;
   cursor: default;
   border: solid 2px #363946;
   color: #363946;
 }
 
-.project-link > hr {
+.v1-project-link > hr {
   display: none;
 }
 
-.disabled > hr {
+.v1-disabled > hr {
   display: initial;
   position: absolute;
   width: 100%;

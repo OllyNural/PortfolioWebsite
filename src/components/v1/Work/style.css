@@ -1,4 +1,4 @@
-.portfolio-page-container {
+.v1-portfolio-page-container {
   background-size: cover;
   width: 100%;
   color: #fdfdfd;
@@ -13,18 +13,18 @@
   padding-top: 17vh;
 }
 
-.work-container {
+.v1-work-container {
   width: 80%;
 }
 
-.portfolio-container {
+.v1-portfolio-container {
   display: flex;
   display: -webkit-flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
 }
 
-.portfolio-container {
+.v1-portfolio-container {
   margin-top: 20px;
   display: flex;
   display: -webkit-flex;

@@ -44,10 +44,10 @@ export default class Layout extends Component {
     //   child = <div> <EasterEgg /> </div>
     // }
     return (
-      <div className="app-container" onKeyDown={this.handleKeyPress} tabIndex="0">
-        <Particles params={config.ParticleConfig} className='particle-container' />
+      <div className="v1-app-container" onKeyDown={this.handleKeyPress} tabIndex="0">
+        <Particles params={config.ParticleConfig} className="v1-particle-container" />
           <Header />
-          <ReactCSSTransitionGroup transitionName="page" transitionEnterTimeout={1000} transitionLeaveTimeout={100000}>
+          <ReactCSSTransitionGroup transitionName="v1-page" transitionEnterTimeout={1000} transitionLeaveTimeout={100000}>
             {child}
           </ReactCSSTransitionGroup>
           <Footer />

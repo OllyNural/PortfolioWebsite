@@ -14,7 +14,7 @@ html, body {
   font-size: 14px;
 }
 
-.single-page-container {
+.v1-single-page-container {
   color: #fdfdfd;
   height: 100vh;
   width: 100%;
@@ -28,7 +28,7 @@ html, body {
   justify-content: center;
 }
 
-.page-container {
+.v1-page-container {
   width: 100%;
   color: #fdfdfd;
   display: flex;
@@ -43,7 +43,7 @@ html, body {
   margin-bottom: 100px;
 }
 
-.blog-page-container {
+.v1-blog-page-container {
   width: 100%;
   color: #1f1f1f;
   display: flex;

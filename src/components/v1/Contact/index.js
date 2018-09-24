@@ -50,21 +50,21 @@ class App extends Component {
   render() {
     let displayForm;
     if (this.state.hasEmailSent) {
-      displayForm = <div className="form-submitted"><h3>Thank you for your message!</h3><p>If your email was valid, then the message will have been sent.</p></div>
+      displayForm = <div className="v1-form-submitted"><h3>Thank you for your message!</h3><p>If your email was valid, then the message will have been sent.</p></div>
     } else {
       displayForm = <ContactForm name={this.state.name} email={this.state.email} message={this.state.message} handleChange={this.handleFormChange} handleSubmit={this.handleSubmit} />
     }
     return (
         <Layout>
-          <div className="page-container">
-            <div className="contact-container">
+          <div className="v1-page-container">
+            <div className="v1-contact-container">
               <Title title="Contact Me" />
-              <div className="contact-intro-form">
-                <div className="contact-text">
-                  Feel free to send an email to <a href="mailto:oliver.nural@gmail.com"><span className="title-name">oliver.nural@gmail.com</span></a>, 
+              <div className="v1-contact-intro-form">
+                <div className="v1-contact-text">
+                  Feel free to send an email to <a href="mailto:oliver.nural@gmail.com"><span className="v1-title-name">oliver.nural@gmail.com</span></a>, 
                   Or alternatively, send me a message here, and i'll get back to you. 
                 </div>
-                <div className="contact-form">
+                <div className="v1-contact-form">
                   {displayForm}
                 </div>
               </div>

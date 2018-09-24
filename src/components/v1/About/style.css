@@ -1,20 +1,20 @@
-.about-container {
+.v1-about-container {
   width: 80%;
 }
 
 @media (min-width: 800px) {
-  .about-introduction {
+  .v1-about-introduction {
     width: 60%;
   }
 }
 
 @media (min-width: 1000px) {
-  .about-introduction {
+  .v1-about-introduction {
     width: 50%;
   }
 }
 
-.about-introduction {
+.v1-about-introduction {
   line-height: 175%;
   font-size: 1.2em;
 }

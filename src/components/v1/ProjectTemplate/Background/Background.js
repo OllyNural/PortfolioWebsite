@@ -9,7 +9,7 @@ export default class Background extends React.Component {
       sentencesToRender.push(<p dangerouslySetInnerHTML={{__html: sentence}} key={sentence}></p>)
     });
     return (
-      <div className="background-info">
+      <div className="v1-background-info">
         {sentencesToRender}
       </div>
     )

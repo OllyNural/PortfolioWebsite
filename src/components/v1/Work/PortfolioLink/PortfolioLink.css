@@ -1,4 +1,4 @@
-.portfolio-item {
+.v1-portfolio-item {
   width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -12,18 +12,18 @@
   -webkit-flex-flow: row wrap;
 }
 
-.portfolio-item-title {
+.v1-portfolio-item-title {
     text-decoration: underline;
     font-weight: bold;
     font-size: 1.4em;
     width: 100%;
 }
 
-.portfolio-item-title>a:hover {
+.v1-portfolio-item-title>a:hover {
   color: yellow;
 }
 
-.portfolio-item-secText {
+.v1-portfolio-item-secText {
     font-style: italic;
     font-size: 1em;
     width: 100%;

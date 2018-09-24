@@ -33,10 +33,10 @@ class Work extends Component {
     })
     return (
         <Layout>
-          <div className="page-container">
-            <div className="work-container">
+          <div className="v1-page-container">
+            <div className="v1-work-container">
               <Title title="Work Portfolio" />
-              <div className="portfolio-container">
+              <div className="v1-portfolio-container">
                 {allPortfolioItems}
               </div>
             </div>

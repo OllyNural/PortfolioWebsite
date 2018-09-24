@@ -1,8 +1,8 @@
-.project-container {
+.v1-project-container {
   width: 80%;
 }
 
-.project-information {
+.v1-project-information {
   display: flex;
   display: -webkit-flex;
   -webkit-flex-flow: row wrap;
@@ -10,7 +10,7 @@
   margin-top: 25px;
 }
 
-.project-links {
+.v1-project-links {
   display: flex;
   display: -webkit-flex;
   -webkit-flex-direction: column;
@@ -18,20 +18,20 @@
   width: 30%;
 }
 
-.project-tech {
+.v1-project-tech {
   width: 100%;
 }
 
-.project-background {
+.v1-project-background {
   width: 65%;
   margin-right: 5%;
 }
 
-.project-background > h3 {
+.v1-project-background > h3 {
   margin-top: 0px;
 }
 
-.project-image-container {
+.v1-project-image-container {
   width: 60%;
   padding-bottom: 20px;
 }

@@ -20,13 +20,13 @@ export default class Header extends Component {
   }
   handleScroll() {
     if (window.top.pageYOffset !== 0) {
-      document.querySelector('header').style.height = '10vh';
-      document.querySelector('.app-logo').style.height = '8vh';
-      document.querySelector('.logo-container').style.top = '1vh';
+      document.querySelector('.v1-header').style.height = '10vh';
+      document.querySelector('.v1-app-logo').style.height = '8vh';
+      document.querySelector('.v1-logo-container').style.top = '1vh';
     } else {
-      document.querySelector('header').style.height = '15vh';
-      document.querySelector('.app-logo').style.height = '10vh';
-      document.querySelector('.logo-container').style.top = '2.5vh';
+      document.querySelector('.v1-header').style.height = '15vh';
+      document.querySelector('.v1-app-logo').style.height = '10vh';
+      document.querySelector('.v1-logo-container').style.top = '2.5vh';
     }
   }
   handleMenuClick() {
@@ -35,38 +35,33 @@ export default class Header extends Component {
     });
   }
   render() {
-    let isMenuTextShown = this.state.isOpen ? 'menu-text-open' : '';
+    let isMenuTextShown = this.state.isOpen ? 'v1-menu-text-open' : '';
     return (
-      <header>
-        <div className="logo-container">
+      <header className="v1-header">
+        <div className="v1-logo-container">
           <Link to="/v1">
-              <img src={logo} className="app-logo" alt="logo" />
+              <img src={logo} className="v1-app-logo" alt="logo" />
           </Link>
         </div>
-        <div className="header-nav">
+        <div className="v1-header-nav">
           <nav>
-            <ul className="nav-ul">
-              <li className="nav-list-item">
+            <ul className="v1-nav-ul">
+              <li className="v1-nav-list-item">
                 <Link to="/v1">
                   Home
                 </Link>
               </li>
-              <li className="nav-list-item">
+              <li className="v1-nav-list-item">
                 <Link to="/v1/about">
                   About
                 </Link>
               </li>
-              <li className="nav-list-item">
+              <li className="v1-nav-list-item">
                 <Link to="/v1/work">
                   Work
                 </Link>
               </li>
-              <li className="nav-list-item">
-                <Link to="/v1/blog">
-                  Blog
-                </Link>
-              </li>
-              <li className="nav-list-item">
+              <li className="v1-nav-list-item">
                 <Link to="/v1/contact">
                   Contact
                 </Link>
@@ -75,33 +70,28 @@ export default class Header extends Component {
           </nav>
         </div>
       
-        <div className={'mobile-menu-button ' + (this.state.isOpen ? 'menu-button-on' : '')} onClick={() => this.handleMenuClick()}>
+        <div className={'v1-mobile-menu-button ' + (this.state.isOpen ? 'v1-menu-button-on' : '')} onClick={() => this.handleMenuClick()}>
           <i></i>
           <i></i>
           <i></i>
         </div>
     
-        <div className='mobile-menu-container'>
-          <div className={'mobile-menu ' + (this.state.isOpen ? 'menu-expand' : '')}>
-            <i className={'material-icons menu-text-home ' + isMenuTextShown}>
+        <div className='v1-mobile-menu-container'>
+          <div className={'v1-mobile-menu ' + (this.state.isOpen ? 'v1-menu-expand' : '')}>
+            <i className={'v1-material-icons menu-text-home ' + isMenuTextShown}>
               <Link to="/">home</Link>
             </i>
-            <i className={'material-icons menu-text-about ' + isMenuTextShown}>
+            <i className={'v1-material-icons v1-menu-text-about ' + isMenuTextShown}>
               <Link to="/about">info</Link>
             </i>
-            <i className={'material-icons menu-text-work ' + isMenuTextShown}>
+            <i className={'v1-material-icons v1-menu-text-work ' + isMenuTextShown}>
               <Link to="/work">work</Link>
             </i>
-            <i className={'material-icons menu-text-letter ' + isMenuTextShown}>
-              <Link to="/blog">blog</Link>
-            </i>
-            <i className={'material-icons menu-text-contact ' + isMenuTextShown}>
+            <i className={'v1-material-icons v1-menu-text-contact ' + isMenuTextShown}>
               <Link to="/contact">email</Link>
             </i>
           </div>
         </div>
-        
-      
       </header>
     );
   }

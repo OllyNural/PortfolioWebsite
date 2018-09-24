@@ -1,8 +1,8 @@
-.contact-container {
+.v1-contact-container {
   width: 80%;
 }
 
-.contact-intro-form {
+.v1-contact-intro-form {
   display: flex;
   display: -webkit-flex;
   -webkit-flex-flow: row wrap;
@@ -10,30 +10,30 @@
   margin-top: 25px;
 }
 
-.contact-text {
+.v1-contact-text {
   width: 100%;
   margin-bottom: 25px;
   font-size: 1.2em;
   line-height: 150%;
 }
 
-.contact-form {
+.v1-contact-form {
   width: 100%;
 }
 
 @media (min-width: 600px) {
-  .contact-form {
+  .v1-contact-form {
     width: 70%;
   }
 }
 
 @media (min-width: 850px) {
-  .contact-text {
+  .v1-contact-text {
     width: 40%;
     margin-right: 10%;
   }
   
-  .contact-form {
+  .v1-contact-form {
     width: 50%;
   }
 }
