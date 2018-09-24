@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Layout from 'components/v1/Layout/Layout'
 import NotFoundPage from 'components/v1/NotFound';
 import Title from 'components/v1/Layout/Title';
+
 import Button from './Button/Button';
 import Background from './Background/Background';
 import HowItWorks from './HowItWorks/HowItWorks';
@@ -22,7 +23,7 @@ export default class App extends Component {
     const url = this.props.routeParams.project;
     let project;
     try {
-      project = require(`../ProjectData/${url}`);
+      project = require(`projects/ProjectData/${url}`);
       project = project[`${url}`];
     } catch (e) {
       project = undefined;
