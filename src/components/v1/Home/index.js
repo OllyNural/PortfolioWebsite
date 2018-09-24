@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Layout from '../Layout/Layout'
+import Layout from 'components/v1/Layout/Layout'
 
 import './style.css';
-import  './font-awesome/css/font-awesome.min.css';
+import './font-awesome/css/font-awesome.min.css';
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
               </div>
         
               <div className="home-introduction">
-                <p>I am a Java and Full Stack Javascript developer based in London.</p>
+                <p>I am a Full Stack Javascript developer based in London.</p>
           
                 <p>Please have a look around, or visit my social media pages below.</p>
               </div>  

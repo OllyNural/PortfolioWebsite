@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import Layout from '../Layout/Layout';
-import Title from '../Layout/Title';
-// import Image from './Image/Image';
-import PortfolioLink from './PortfolioLink/PortfolioLink'
-import { Data } from '../ProjectData/Data';
+import Layout from 'components/v1/Layout/Layout';
+import Title from 'components/v1/Layout/Title';
+import { Data } from 'projects/ProjectData/Data';
+
+import PortfolioLink from './PortfolioLink/PortfolioLink';
 
 import './style.css';
 

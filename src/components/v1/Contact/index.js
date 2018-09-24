@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import Layout from '../Layout/Layout';
-import Title from '../Layout/Title';
+import Layout from 'components/v1/Layout/Layout';
+import Title from 'components/v1/Layout/Title';
+
 import ContactForm from './ContactForm/ContactForm';
 
 import './style.css';
@@ -30,10 +31,6 @@ class App extends Component {
   }
   handleSubmit(event) {
     let url = '/api/contact';
-    console.log('Message send request received!');
-    console.log('Name: ' + this.state.name);
-    console.log('Email: ' + this.state.email);
-    console.log('Message: ' + this.state.message);
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
@@ -42,7 +39,6 @@ class App extends Component {
         message: this.state.message
       })
     }).then((response) => {
-      console.log(response);
       if (response.status === 200) {
         this.setState({hasEmailSent: true},() => {
           localStorage.setItem('hasEmailSent', JSON.stringify('true'))

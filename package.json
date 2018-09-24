@@ -20,11 +20,14 @@
     "react-scripts": "1.0.10"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-server": "forever start server",
-    "stop-server": "forever stop server",
+    "start": "NODE_PATH=/src react-scripts start",
+    "start:server": "NODE_PATH=/src forever start server",
+    "stop:server": "NODE_PATH=/src forever stop server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-plugin-root-import": "^6.1.0"
   }
 }

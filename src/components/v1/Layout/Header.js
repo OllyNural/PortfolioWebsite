@@ -39,7 +39,7 @@ export default class Header extends Component {
     return (
       <header>
         <div className="logo-container">
-          <Link to="/">
+          <Link to="/v1">
               <img src={logo} className="app-logo" alt="logo" />
           </Link>
         </div>
@@ -47,22 +47,27 @@ export default class Header extends Component {
           <nav>
             <ul className="nav-ul">
               <li className="nav-list-item">
-                <Link to="/">
+                <Link to="/v1">
                   Home
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link to="/about">
+                <Link to="/v1/about">
                   About
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link to="/work">
+                <Link to="/v1/work">
                   Work
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link to="/contact">
+                <Link to="/v1/blog">
+                  Blog
+                </Link>
+              </li>
+              <li className="nav-list-item">
+                <Link to="/v1/contact">
                   Contact
                 </Link>
               </li>
@@ -86,6 +91,9 @@ export default class Header extends Component {
             </i>
             <i className={'material-icons menu-text-work ' + isMenuTextShown}>
               <Link to="/work">work</Link>
+            </i>
+            <i className={'material-icons menu-text-letter ' + isMenuTextShown}>
+              <Link to="/blog">blog</Link>
             </i>
             <i className={'material-icons menu-text-contact ' + isMenuTextShown}>
               <Link to="/contact">email</Link>

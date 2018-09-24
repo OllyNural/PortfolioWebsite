@@ -1,26 +1,41 @@
 import React from 'react'
 import { Router, Route } from 'react-router'
-import Home from './components/Home'
-import About from './components/About'
-import Work from './components/Work'
-import Contact from './components/Contact'
-import NotFoundPage from './components/NotFound'
-import TicTacToePage from './components/TicTacToe'
-import TodoPage from './components/Todo'
-import ProjectPage from './components/ProjectTemplate'
-import BlogPage from './components/Blog'
+
+// Projects
+import TicTacToePage from 'projects/TicTacToe'
+import TodoPage from 'projects/Todo'
+
+// Version 1
+import HomeV1 from 'components/v1/Home'
+import AboutV1 from 'components/v1/About'
+import WorkV1 from 'components/v1/Work'
+import BlogV1 from 'components/v1/Blog'
+import ContactV1 from 'components/v1/Contact'
+import NotFoundPageV1 from 'components/v1/NotFound'
+import ProjectPageV1 from 'components/v1/ProjectTemplate'
+import BlogPageV1 from 'components/v1/Blog'
+import BlogHomePageV1 from 'components/v1/BlogHome'
+
+// Version 2
+import HomeV2 from 'components/v2/Home'
 
 const routes = (
   <Router>
-    <Route path="/" component={Home}/>
-    <Route path="about" component={About}/>
-    <Route path="work" component={Work}/>
-    <Route path="contact" component={Contact}/>
-    <Route path="project/:project" component={ProjectPage}/>
+    {/* projects */}
     <Route path="tictactoe/demo" component={TicTacToePage}/>
-    <Route path="Todo/demo" component={TodoPage}/>
-    <Route path="blog/:blogid" component={BlogPage}/>
-    <Route path="*" component={NotFoundPage}/>
+    <Route path="todo/demo" component={TodoPage}/>
+    {/* V1 Website */}
+    <Route path="/v1" component={HomeV1}/>
+    <Route path="/v1/about" component={AboutV1}/>
+    <Route path="/v1/work" component={WorkV1}/>
+    <Route path="/v1/blog" component={BlogV1}/>
+    <Route path="/v1/contact" component={ContactV1}/>
+    <Route path="/v1/project/:project" component={ProjectPageV1}/>
+    <Route path="/v1/bloghome" component={BlogHomePageV1}/>
+    <Route path="/v1/blog/:blogid" component={BlogPageV1}/>
+    <Route path="/v1/*" component={NotFoundPageV1}/>
+    {/* V2 Website */}
+    <Route path="/" component={HomeV2}/>    
   </Router>
 )
 

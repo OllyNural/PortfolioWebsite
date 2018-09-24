@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Layout from '../Layout/Layout'
-import NotFoundPage from '../NotFound';
-import Title from '../Layout/Title';
+import Layout from 'components/v1/Layout/Layout'
+import NotFoundPage from 'components/v1/NotFound';
+import Title from 'components/v1/Layout/Title';
 import Button from './Button/Button';
 import Background from './Background/Background';
 import HowItWorks from './HowItWorks/HowItWorks';

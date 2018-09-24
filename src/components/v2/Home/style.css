@@ -1,0 +1,29 @@
+.v2-page-container {
+    height: 100%;
+    width: 100%;
+    /* background-color: blue; */
+    background-color: white;
+    color: #47474a;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    /* flex-wrap: wrap;
+    -webkit-flex-wrap: wrap; */
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+
+.v2-home-containers {
+    height: 100vh;
+}
+
+.v2-home-left-container {
+    width: 80%;    
+}
+
+.v2-home-right-container {
+    width: 50%;    
+}

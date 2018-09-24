@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Particles from 'react-particles-js'
 
+import config from 'config'
+
 import Header from './Header'
 import Footer from './Footer'
-import EasterEgg from '../EasterEgg'
-import Config from '../../config'
 
 import './Layout.css';
 
@@ -38,14 +38,14 @@ export default class Layout extends Component {
   }
   render() {
     let child
-    if (this.state.mounted && !this.state.isKCode) {
+    // if (this.state.mounted && !this.state.isKCode) {
       child = <div> {this.props.children} </div>
-    } else if (this.state.mounted && this.state.isKCode) {
-      child = <div> <EasterEgg /> </div>
-    }
+    // } else if (this.state.mounted && this.state.isKCode) {
+    //   child = <div> <EasterEgg /> </div>
+    // }
     return (
       <div className="app-container" onKeyDown={this.handleKeyPress} tabIndex="0">
-        <Particles params={Config} className='particle-container' />
+        <Particles params={config.ParticleConfig} className='particle-container' />
           <Header />
           <ReactCSSTransitionGroup transitionName="page" transitionEnterTimeout={1000} transitionLeaveTimeout={100000}>
             {child}
