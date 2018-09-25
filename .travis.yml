@@ -5,3 +5,47 @@ install:
   - npm install
 script:
   - npm test
+
+deploy:
+  - provider: s3
+    ⋮ # rest of S3 deployment for MyApp.zip
+  - provider: codedeploy
+    access_key_id: "AKIAJSJCPDZKROG7E5JA"
+    secret_access_key: "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"
+    bucket: "Portfolio"
+    key: latest/MyApp.zip
+    application: MyApp
+    deployment_group: MyDeploymentGroup
+    region: us-west-1
+
+
+language: node_js
+node_js:
+- 'node'
+cache:
+  directories:
+    - node_modules
+deploy:
+- provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  local_dir: code_deploy_upload
+  skip_cleanup: true
+  on: &2
+    repo: OllyNural/PortfolioWebsite
+  bucket: oliver-nural-portfolio-bucket
+  region: eu-west-1
+- provider: codedeploy
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: oliver-nural-portfolio-bucket
+  key: latest.zip
+  bundle_type: zip
+  application: Portfolio
+  deployment_group: PortfolioDeploymentGroup
+  region: eu-west-1
+  on: *2
+script:
+  - zip -r latest *
+  - mkdir -p dpl_cd_upload
+  - mv latest.zip code_deploy_upload/latest.zip
