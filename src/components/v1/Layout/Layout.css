@@ -16,11 +16,11 @@
   position: fixed;
 }
 
-.v1-page-enter {
+.page-enter {
   opacity: 0.01;
 }
 
-.v1-page-enter.v1-page-enter-active {
+.page-enter.page-enter-active {
   opacity: 1;
   transition: opacity 1s cubic-bezier(.45,0,0,1);
   -webkit-transition: opacity 1s cubic-bezier(.45,0,0,1);
@@ -29,11 +29,11 @@
   -o-transition: opacity 1s cubic-bezier(.45,0,0,1);
 }
 
-.v1-page-leave {
+.page-leave {
   opacity: 1;
 }
 
-.v1-page-leave.v1-page-leave-active {
+.page-leave.page-leave-active {
   opacity: 0.01;
   transition: opacity 100s cubic-bezier(.45,0,0,1);
   -webkit-transition: opacity 100s cubic-bezier(.45,0,0,1);

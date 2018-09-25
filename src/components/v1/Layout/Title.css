@@ -1,4 +1,4 @@
-@Keyframes expandFromLeft {
+@keyframes expandFromLeft {
   0% {
     width: 0%;
   }

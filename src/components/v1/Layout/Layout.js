@@ -47,7 +47,7 @@ export default class Layout extends Component {
       <div className="v1-app-container" onKeyDown={this.handleKeyPress} tabIndex="0">
         <Particles params={config.ParticleConfig} className="v1-particle-container" />
           <Header />
-          <ReactCSSTransitionGroup transitionName="v1-page" transitionEnterTimeout={1000} transitionLeaveTimeout={100000}>
+          <ReactCSSTransitionGroup transitionName="page" transitionEnterTimeout={1000} transitionLeaveTimeout={100000}>
             {child}
           </ReactCSSTransitionGroup>
           <Footer />
