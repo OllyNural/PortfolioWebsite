@@ -22,7 +22,7 @@ deploy:
   key: latest.zip
   bundle_type: zip
   application: Portfolio
-  deployment_group: PortfolioGroupName
+  deployment_group: PortfolioDeploymentGroup
   region: eu-west-1
   on:
     repo: OllyNural/PortfolioWebsite  
