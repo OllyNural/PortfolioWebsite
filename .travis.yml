@@ -27,6 +27,6 @@ deploy:
   on:
     repo: OllyNural/PortfolioWebsite  
 script:
-  - zip -rq latest *
+  - zip -rq latest .
   - mkdir -p code_deploy_upload
   - mv latest.zip code_deploy_upload/latest.zip

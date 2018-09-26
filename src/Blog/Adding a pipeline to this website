@@ -32,3 +32,18 @@ Can't think of a programmatic way of doing this
 Instances need to have environment configured correctly.
 
 E.g Node and NPM need to be installed properly -> with Infrastructure as Code you can set this up using UserData on the EC2 instance though
+
+Install Node
+Install NPM
+All the while manually clicking build through the console interface
+
+Configuration is a massive pain.
+
+Why not just make a Dockerfile and shove it on an EC2 using ECS.
+
+Really not impressed
+
+ZIP not including all files using 
+-   - zip -rq latest .
+not
+-   - zip -rq latest *
