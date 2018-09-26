@@ -1,39 +1,71 @@
 # Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
+      - image: circleci/node:8.9.1
     steps:
       - checkout
-
-      # Download and cache dependencies
+      - setup_remote_docker
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: npm install
-
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install
       - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
-      - run: yarn test
+      - build:
+          name: Build the application
+          command: npm run build
+      - persist_to_workspace:
+          root: ./
+          paths:
+           - .env
+           - package.json
+           - node_modules
+           - src
+           - build
+           - config
+           - server
+           - Dockerfile
+  deploy:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: ./
+      - run:
+          #Get all pre-requisites
+          command: |
+            apk add --no-cache \
+              py-pip=9.0.0-r1
+            pip install \
+              awscli==1.14.37
+            # Login to ecr and docker login
+            aws_login=`aws ecr get-login --no-include-email --region eu-west-2`
+            eval $aws_login
+            # Docker build, tag and push
+            TAG="0.1.${CIRCLE_BUILD_NUM}"
+            docker build -t consents .
+            docker tag consents 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:$TAG
+            docker tag consents:latest 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:latest
+            docker push 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:$TAG
+            docker push 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:latest
 
+            docker tag consents:latest 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:latest
+            docker tag 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:latest 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:sit
+            docker push 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:sit
 
+            aws ecs update-service --cluster portfolio-cluster --service portfolio-service --force-new-deployment --region eu-west-1
+            
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
