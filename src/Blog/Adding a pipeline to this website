@@ -1,0 +1,14 @@
+Blog idea;
+
+Creating a Pipeline for this website using TravisCI and AWS CodeDeploy
+
+
+Followed https://medium.com/@itsdavidthai/comprehensive-aws-ec2-deployment-with-travisci-guide-7cafa9c754fc
+
+But this article only really showed how to get something in the EC2, not running
+
+So to get something running I had to edit the appspec.yml file to include application lifecycle hooks like `application-start` and `application-stop`
+
+Errors:
+`Script does not exist at specified location: /opt/codedeploy-agent/deployment-root/0c6a316b-67f4-48af-8bbd-72bacd7a225e/d-DHWLBPQDV/deployment-archive/scripts/stop.sh`
+
