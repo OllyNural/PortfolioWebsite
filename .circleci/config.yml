@@ -45,19 +45,15 @@ jobs:
             pip install \
               awscli==1.14.37
             # Login to ecr and docker login
-            aws_login=`aws ecr get-login --no-include-email --region eu-west-2`
+            aws_login=`aws ecr get-login --no-include-email --region eu-west-1`
             eval $aws_login
             # Docker build, tag and push
             TAG="0.1.${CIRCLE_BUILD_NUM}"
-            docker build -t consents .
-            docker tag consents 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:$TAG
-            docker tag consents:latest 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:latest
-            docker push 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:$TAG
-            docker push 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:latest
-
-            docker tag consents:latest 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:latest
-            docker tag 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:latest 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:sit
-            docker push 592759841913.dkr.ecr.eu-west-2.amazonaws.com/consents:sit
+            docker build -t portfolio .
+            docker tag portfolio 257200663051.dkr.ecr.eu-west-1.amazonaws.com/portfolio-repository:$TAG
+            docker tag portfolio:latest 257200663051.dkr.ecr.eu-west-1.amazonaws.com/portfolio-repository:latest
+            docker push 257200663051.dkr.ecr.eu-west-1.amazonaws.com/portfolio-repository:$TAG
+            docker push 257200663051.dkr.ecr.eu-west-1.amazonaws.com/portfolio-repository:latest
 
             aws ecs update-service --cluster portfolio-cluster --service portfolio-service --force-new-deployment --region eu-west-1
             
