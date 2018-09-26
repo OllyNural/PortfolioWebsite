@@ -12,3 +12,18 @@ So to get something running I had to edit the appspec.yml file to include applic
 Errors:
 `Script does not exist at specified location: /opt/codedeploy-agent/deployment-root/0c6a316b-67f4-48af-8bbd-72bacd7a225e/d-DHWLBPQDV/deployment-archive/scripts/stop.sh`
 
+Got some weird circular dependency problem going on:
+- Before pulling down code in the DownloadBundle hook it runs an ApplicationStop hook
+- If the ApplicationStop command is wrong/needs changing, and it is erroring currently on ApplicationStop
+- How can you update ApplicationStop, as you can't even get to the stage of DownloadBundle because it fails on Stop
+
+https://docs.aws.amazon.com/codedeploy/latest/userguide/troubleshooting-deployments.html#troubleshooting-deployments-lifecycle-event-failures
+
+One of the solutions they recommend is 
+- 'Use the AWS CodeDeploy console to create a deployment. On the Create deployment page, under ApplicationStop lifecycle event failure, choose Don't fail the deployment to an instance if this lifecycle event on the instance fails.'
+
+I don't really like this, as 
+- Unless you want your build to always allow broken steps, it's a manual step that will have to switched on and off multiple times
+
+It can be done through the AWS console but as mentioned you'll need to switch it on and off, meaning creating new deployment configs each time
+Can't think of a programmatic way of doing this

@@ -22,12 +22,11 @@ deploy:
   key: latest.zip
   bundle_type: zip
   application: Portfolio
-  deployment_group: PortfolioDeploymentGroup
+  deployment_group: PortfolioGroupName
   region: eu-west-1
   on:
     repo: OllyNural/PortfolioWebsite  
 script:
   - zip -rq latest *
-  - ls scripts
   - mkdir -p code_deploy_upload
   - mv latest.zip code_deploy_upload/latest.zip
