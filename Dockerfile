@@ -1,20 +1,18 @@
-FROM node:6
+FROM node:8-alpine
 
 # Create app directory
-RUN mkdir - /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /usr/app 
 
 # install app dependencies
-COPY package.json /usr/src/app/
-RUN npm install
+COPY node_modules ./node_modules
+COPY src/ ./src
+COPY build/ ./build
+COPY config/ ./config
+COPY server/ ./server
+COPY package.json ./package.json
+ENV NODE_PATH src/
 
-#Bundle app source
-COPY . /usr/src/app
-
-#Build and optimize react app
-RUN npm run build
-
-EXPOSE 9000
+EXPOSE 8080
 
 # defined in package.json
 CMD [ "npm", "run", "start:server"]
