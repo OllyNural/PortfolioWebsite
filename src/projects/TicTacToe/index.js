@@ -203,7 +203,7 @@ export default class TicTacToePage extends Component {
           0;
       return (
         <li key={move}>
-          <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
+          <a href="#move" onClick={() => this.jumpTo(move)}>{desc}</a>
         </li>
       )
     })

@@ -24,7 +24,7 @@ function collect(connect, monitor) {
 
 class ListItem extends Component {
     render() {
-        const { connectDragSource, isDragging } = this.props
+        const { connectDragSource } = this.props
         let boundInputOnClick = this.props.setAsDone.bind(this, this.props.id)
         let boundButtonOnClick = this.props.delete.bind(this, this.props.id)
         return connectDragSource(
