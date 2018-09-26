@@ -27,5 +27,6 @@ deploy:
   on: *2
 script:
   - zip -rq latest *
+  - ls
   - mkdir -p code_deploy_upload
   - mv latest.zip code_deploy_upload/latest.zip
