@@ -11,7 +11,7 @@ deploy:
   secret_access_key: $AWS_SECRET_KEY
   local_dir: code_deploy_upload
   skip_cleanup: true
-  on: &2
+  on:
     repo: OllyNural/PortfolioWebsite
   bucket: oliver-nural-portfolio-bucket
   region: eu-west-1
@@ -24,7 +24,8 @@ deploy:
   application: Portfolio
   deployment_group: PortfolioDeploymentGroup
   region: eu-west-1
-  on: *2
+  on:
+    repo: OllyNural/PortfolioWebsite  
 script:
   - zip -rq latest *
   - ls scripts
