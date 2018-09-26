@@ -27,3 +27,8 @@ I don't really like this, as
 
 It can be done through the AWS console but as mentioned you'll need to switch it on and off, meaning creating new deployment configs each time
 Can't think of a programmatic way of doing this
+
+
+Instances need to have environment configured correctly.
+
+E.g Node and NPM need to be installed properly -> with Infrastructure as Code you can set this up using UserData on the EC2 instance though

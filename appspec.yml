@@ -4,10 +4,6 @@ files:
   - source: ./
     destination: /home/ec2-user/project
 hooks:
-  BeforeInstall:
-    - location: scripts/beforeinstall.sh
-      timeout: 1200
-      runas: ec2-user
   ApplicationStop:
     - location: scripts/stop.sh
       timeout: 300
