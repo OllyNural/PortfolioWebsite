@@ -26,6 +26,6 @@ deploy:
   region: eu-west-1
   on: *2
 script:
-  - zip -r latest *
+  - zip -rq latest *
   - mkdir -p code_deploy_upload
   - mv latest.zip code_deploy_upload/latest.zip
