@@ -56,7 +56,7 @@
   },
   "scripts": {
     "start": "NODE_PATH=/src node scripts/start.js",
-    "start:server": "NODE_PATH=/src forever start server",
+    "start:server": "NODE_PATH=/src forever server",
     "stop:server": "NODE_PATH=/src forever stop server",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
