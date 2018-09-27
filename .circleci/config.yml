@@ -47,15 +47,8 @@ jobs:
             # Login to ecr and docker login
             aws_login=`aws ecr get-login --no-include-email --region eu-west-1`
             eval $aws_login
-            # Docker build, tag and push
-            TAG="0.1.${CIRCLE_BUILD_NUM}"
-            docker build -t portfolio .
-            docker tag portfolio 257200663051.dkr.ecr.eu-west-1.amazonaws.com/portfolio-repository:$TAG
-            docker tag portfolio:latest 257200663051.dkr.ecr.eu-west-1.amazonaws.com/portfolio-repository:latest
-            docker push 257200663051.dkr.ecr.eu-west-1.amazonaws.com/portfolio-repository:$TAG
-            docker push 257200663051.dkr.ecr.eu-west-1.amazonaws.com/portfolio-repository:latest
 
-            aws ecs update-service --cluster portfolio-cluster --service portfolio-service --force-new-deployment --region eu-west-1
+            aws s3 sync build/ s3://oliver-nural-portfolio-bucket
             
 workflows:
   version: 2
