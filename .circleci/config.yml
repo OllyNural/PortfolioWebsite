@@ -30,7 +30,7 @@ jobs:
            - config
            - server
            - Dockerfile
-  deploy:
+  deploy-test:
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -48,13 +48,43 @@ jobs:
             aws_login=`aws ecr get-login --no-include-email --region eu-west-1`
             eval $aws_login
 
-            aws s3 sync build/ s3://oliver-nural-portfolio-bucket
+            aws s3 sync build/ s3://oliver-nural-portfolio-test-bucket
+  deploy-production:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: ./
+      - run:
+          #Get all pre-requisites
+          command: |
+            apk add --no-cache \
+              py-pip=9.0.0-r1
+            pip install \
+              awscli==1.14.37
+            # Login to ecr and docker login
+            aws_login=`aws ecr get-login --no-include-email --region eu-west-1`
+            eval $aws_login
+
+            aws s3 sync build/ s3://oliver-nural-portfolio-production-bucket
             
 workflows:
   version: 2
   build-test-and-deploy:
     jobs:
       - build
-      - deploy:
+      - deploy-test:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - test
+      - deploy-production:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master

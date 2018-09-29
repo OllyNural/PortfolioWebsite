@@ -6,17 +6,6 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 
-// Setup nodemailer transporter
-let transport = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  auth: {
-    user: data.username,
-    pass: data.password
-  }
-})
-
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
