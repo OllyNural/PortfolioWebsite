@@ -78,17 +78,17 @@ export default class Header extends Component {
     
         <div className='v1-mobile-menu-container'>
           <div className={'v1-mobile-menu ' + (this.state.isOpen ? 'v1-menu-expand' : '')}>
-            <i className={'v1-material-icons menu-text-home ' + isMenuTextShown}>
-              <Link to="/">home</Link>
+            <i className={'material-icons v1-menu-text-home ' + isMenuTextShown}>
+              <Link to="/v1/">home</Link>
             </i>
-            <i className={'v1-material-icons v1-menu-text-about ' + isMenuTextShown}>
-              <Link to="/about">info</Link>
+            <i className={'material-icons v1-menu-text-about ' + isMenuTextShown}>
+              <Link to="/v1/about">info</Link>
             </i>
-            <i className={'v1-material-icons v1-menu-text-work ' + isMenuTextShown}>
-              <Link to="/work">work</Link>
+            <i className={'material-icons v1-menu-text-work ' + isMenuTextShown}>
+              <Link to="/v1/work">work</Link>
             </i>
-            <i className={'v1-material-icons v1-menu-text-contact ' + isMenuTextShown}>
-              <Link to="/contact">email</Link>
+            <i className={'material-icons v1-menu-text-contact ' + isMenuTextShown}>
+              <Link to="/v1/contact">email</Link>
             </i>
           </div>
         </div>
