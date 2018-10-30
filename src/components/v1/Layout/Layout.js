@@ -38,11 +38,7 @@ export default class Layout extends Component {
   }
   render() {
     let child
-    // if (this.state.mounted && !this.state.isKCode) { 
-      child = <div> {this.props.children} </div>
-    // } else if (this.state.mounted && this.state.isKCode) {
-    //   child = <div> <EasterEgg /> </div>
-    // }
+    child = <div> {this.props.children} </div>
     return (
       <div className="v1-app-container" onKeyDown={this.handleKeyPress} tabIndex="0">
         <Particles params={config.ParticleConfig} className="v1-particle-container" />
