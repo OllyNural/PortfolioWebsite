@@ -157,7 +157,7 @@ li>a:hover:before {
   -webkit-transition: all 0.5s cubic-bezier(.45,0,0,1);
   -moz-transition: all 0.5s cubic-bezier(.45,0,0,1);
   -ms-transition: all 0.5s cubic-bezier(.45,0,0,1);
-  -o-transition: all 0.5s cubic-bezier(.45,0,0,1);
+  -o-transition: all 0.5s cubic-bezier(.45,0,0,1); 
   z-index: 10;
 }
 
