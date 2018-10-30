@@ -179,7 +179,7 @@ li>a:hover:before {
 }
 
 .v1-menu-button-on > i:nth-child(3) {
-  transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
+  transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg); 
   -webkit-transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
   -moz-transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
   -ms-transform: translate3d(0px, -12px, 0px) scale3d(1, 1, 1) rotate(315deg);
