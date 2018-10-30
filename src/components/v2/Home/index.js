@@ -21,8 +21,6 @@ class App extends Component {
                             <a className='v2-portfolio-link' href='/blog'>Blog</a>
                         </div>
                         <div className="v2-portfolio-link-container v2-portfolio-link-third">
-                            {/* <a className='v2-portfolio-link' href='/projects'>Projects</a> */}
-
                             <Link className='v2-portfolio-link' to="/Projects">Projects</Link>
                         </div>
                     </div>
