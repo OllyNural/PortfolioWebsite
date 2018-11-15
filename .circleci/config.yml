@@ -48,7 +48,7 @@ jobs:
             aws_login=`aws ecr get-login --no-include-email --region eu-west-1`
             eval $aws_login
 
-            aws s3 sync build/ s3://olivernural.com
+            aws s3 sync build/ s3://oliver-nural-portfolio-test-bucket
   deploy-production:
     docker:
       - image: docker:17.05.0-ce-git
