@@ -131,9 +131,6 @@ export default class Game extends Component {
     let x = this.state.x - (Math.cos(theta) * v)
     let y = this.state.y - (Math.sin(theta) * v)
 
-    let px = x + this.props.width / 2
-    let py = y + this.props.height / 2
-
     // let collision = this.checkSolid(px, py)
 
     // if (collision) return
