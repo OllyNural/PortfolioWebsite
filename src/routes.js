@@ -4,6 +4,7 @@ import { Router, Route } from 'react-router'
 // Projects
 import TicTacToePage from 'projects/TicTacToe'
 import TodoPage from 'projects/Todo'
+import PeanutGamePage from 'projects/PeanutGame'
 
 // Version 1
 import HomeV1 from 'components/v1/Home'
@@ -21,6 +22,7 @@ const routes = (
     {/* projects */}
     <Route path="tictactoe/demo" component={TicTacToePage}/>
     <Route path="todo/demo" component={TodoPage}/>
+    <Route path="ilene/peanut" component={PeanutGamePage}/>    
     {/* V1 Website */}
     <Route path="/v1" component={HomeV1}/>
     <Route path="/v1/about" component={AboutV1}/>
