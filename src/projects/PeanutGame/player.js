@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import characters from './characters'
 
+let scales = {
+  'peanut': '0.5'
+}
+
 export default class Player extends Component {
   constructor(props) {
     super(props)
@@ -39,6 +43,7 @@ export default class Player extends Component {
     let flip = spriteLoc[2] ? -1 : 1
 
     let style = {
+      borderRadius: '10px',
       width: this.state.character.width,
       height: this.state.character.height,
       position: 'absolute',
@@ -46,7 +51,7 @@ export default class Player extends Component {
       top: this.props.y - character.height,
       background: `url(${sprite})`,
       backgroundPosition: `${-x}px ${-y}px`,
-      transform: `scaleX(${flip})`
+      transform: `scale(${scales[character.name]}) scaleX(${flip})`
     }
 
     return (

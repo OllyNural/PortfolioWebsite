@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Player from './player.js'
 import BackgroundMap from './assets/map/EarthBound-Winters-Map.png'
-// import BackgroundMapSolid from './assets/map/EarthBound-Winters-Map-Solid.png'
+import BackgroundMapSolid from './assets/map/EarthBound-Winters-Map-Solid.png'
 
 export default class Game extends Component {
   constructor() {
@@ -14,42 +14,43 @@ export default class Game extends Component {
         isMovingWest: false,
         speed: 0.1,
         x: 600,
-        y: 10,
+        y: 100,
         distance: 0
     }
-    // this.createSolidCanvas = this.createSolidCanvas.bind(this);
     this.moveLoop = this.moveLoop.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
     window.addEventListener('keydown', this.onKeyDown)
     window.addEventListener('keyup', this.onKeyUp)
+    this.solidCanvas = this.createSolidCanvas()
+    console.log(this.solidCanvas)
   }
 
   componentWillMount () {
     window.requestAnimationFrame(this.moveLoop)
-    // this.solidCanvas = this.createSolidCanvas()
   }
 
-  // createSolidCanvas() {
-  //   let canvas = document.createElement('canvas')
-  //   canvas.width = 1133
-  //   canvas.height = 999
-  //   let ctx = canvas.getContext('2d')
-  //   let img = document.createElement('img')
-  //   img.src = BackgroundMapSolid
-  //   img.onload = () => { ctx.drawImage(img, 0, 0) }
-  //   return canvas
-  // }
+  createSolidCanvas() {
+    let canvas = document.createElement('canvas')
+    canvas.width = 999
+    canvas.height = 1133
+    let ctx = canvas.getContext('2d')
+    let img = document.createElement('img')
+    img.src = BackgroundMapSolid
+    console.log(img.src)
+    img.onload = () => { ctx.drawImage(img, 0, 0) }
+    return canvas
+  }
 
-  // checkSolid(x, y) {
-  //   let ctx = this.solidCanvas.getContext('2d')
-  //   let data = ctx.getImageData(x, y, 16, 1).data
-  //   let collision = false
-  //   for (let i = 0; i < data.length; i++) {
-  //     if (data[i] > 0) collision = true
-  //   }
-  //   return collision
-  // }
+  checkSolid(x, y) {
+    let ctx = this.solidCanvas.getContext('2d')
+    let data = ctx.getImageData(x, y, 16, 1).data
+    let collision = false
+    for (let i = 0; i < data.length; i++) {
+      if (data[i] > 0) collision = true
+    }
+    return collision
+  }
 
   createStyle() {
     return {
@@ -116,11 +117,8 @@ export default class Game extends Component {
 
   moveLoop () {
     window.requestAnimationFrame(this.moveLoop)
-    // console.log('move loop1')
     let lastTime = this.lastTime || Date.now() - 50
-    // console.log('move loop2')
     this.lastTime = Date.now()
-    // console.log('move loop3')
 
     if (!this.isMoving()) return this.setState({v: 0})
 
@@ -131,9 +129,13 @@ export default class Game extends Component {
     let x = this.state.x - (Math.cos(theta) * v)
     let y = this.state.y - (Math.sin(theta) * v)
 
-    // let collision = this.checkSolid(px, py)
+    var px = x + this.props.width / 2
+    var py = y + this.props.height / 2
 
-    // if (collision) return
+    let collision = this.checkSolid(px, py)
+    console.log(collision)
+
+    if (collision) return
 
     let distance = this.state.distance + v
     this.setState({x: x, y: y, distance: distance})
