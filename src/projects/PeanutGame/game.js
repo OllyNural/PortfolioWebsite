@@ -2,20 +2,27 @@ import React, { Component } from 'react'
 import Player from './player.js'
 import BackgroundMap from './assets/map/EarthBound-Winters-Map.png'
 import BackgroundMapSolid from './assets/map/EarthBound-Winters-Map-Solid.png'
+import FinalRoomMap from './assets/map/FinalRoom-Map-Christmas.png'
+import FinalRoomMapSolid from './assets/map/FinalRoom-Map-Christmas-Solid.png'
+
+import characters from './characters.js'
 
 export default class Game extends Component {
   constructor() {
     super();
     this.state = {
-        lastTime: Date.now(),
-        isMovingNorth: false,
-        isMovingEast: false,
-        isMovingSouth: false,
-        isMovingWest: false,
-        speed: 0.1,
-        x: 600,
-        y: 100,
-        distance: 0
+      inHouse: false,
+      lastTime: Date.now(),
+      isMovingNorth: false,
+      isMovingEast: false,
+      isMovingSouth: false,
+      isMovingWest: false,
+      speed: 0.1,
+      x: 600,
+      y: 100,
+      distance: 0,
+      hasMoved: false,
+      characters: characters
     }
     this.moveLoop = this.moveLoop.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
@@ -23,7 +30,6 @@ export default class Game extends Component {
     window.addEventListener('keydown', this.onKeyDown)
     window.addEventListener('keyup', this.onKeyUp)
     this.solidCanvas = this.createSolidCanvas()
-    console.log(this.solidCanvas)
   }
 
   componentWillMount () {
@@ -32,14 +38,20 @@ export default class Game extends Component {
 
   createSolidCanvas() {
     let canvas = document.createElement('canvas')
-    canvas.width = 999
-    canvas.height = 1133
+    canvas.width = this.state.inHouse ? 128 : 999
+    canvas.height = this.state.inHouse ? 255 : 1133
     let ctx = canvas.getContext('2d')
     let img = document.createElement('img')
-    img.src = BackgroundMapSolid
-    console.log(img.src)
+    let backgroundMapSolid = this.state.inHouse ? FinalRoomMapSolid : BackgroundMapSolid
+    img.src = backgroundMapSolid
     img.onload = () => { ctx.drawImage(img, 0, 0) }
     return canvas
+  }
+
+  convertCoords (xMap, yMap) {
+    var x = xMap - this.state.x + this.props.width / 2
+    var y = yMap - this.state.y + this.props.height / 2
+    return [x, y]
   }
 
   checkSolid(x, y) {
@@ -53,13 +65,16 @@ export default class Game extends Component {
   }
 
   createStyle() {
+    let backgroundMap = this.state.inHouse ? FinalRoomMap : BackgroundMap
+    let backgroundPosition = this.state.inHouse ? 'center' : `${-this.state.x}px ${-this.state.y}px`
+    let width = this.state.inHouse ? '255px' : this.props.width
+    let height = this.state.inHouse ? '128px' : this.props.height
     return {
-      // border: '1px solid red',
-      width: this.props.width,
-      height: this.props.height,
+      width: width,
+      height: height,
       position: 'relative',
-      backgroundImage: `url(${BackgroundMap})`,
-      backgroundPosition: `${-this.state.x}px ${-this.state.y}px`,
+      backgroundImage: `url(${backgroundMap})`,
+      backgroundPosition: backgroundPosition,
       backgroundRepeat: 'no-repeat',
       imageRendering: 'pixelated',
       boxShadow: '0px 2px 10px 4px rgba(0,0,0,0.5)',
@@ -67,7 +82,6 @@ export default class Game extends Component {
       alignItems: 'center',
       justifyContent: 'center',
       overflow: 'hidden',
-      // transform: 'scale(1.5)'
       transform: 'scale(2.11406)'
     }
   }
@@ -114,6 +128,65 @@ export default class Game extends Component {
 
     return isMoving
   }
+  
+  renderInstructions () {
+    if (this.state.hasMoved) return ''
+
+    var textBoxStyle = {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'rgba(0,0,0,0.7)',
+      color: '#eaeaea',
+      textAlign: 'center',
+      fontSize: '0.5rem',
+      fontFamily: '"Kalam", "comic sans ms", fantasy',
+      letterSpacing: 1,
+      fontWeight: 'bold',
+      width: '100%',
+      height: 30,
+      position: 'absolute',
+      left: 0,
+      top: 0
+    }
+
+    return (
+      <div style={textBoxStyle}>
+        <span>Oh no! Peanut is lost! <br /> Help him get back to the rest of the bears.</span>
+      </div>
+    )
+  }
+  renderCongratulations () {
+    if (!this.state.inHouse) return ''
+
+    var textBoxStyle = {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'rgba(0,0,0,0.7)',
+      color: '#eaeaea',
+      textAlign: 'center',
+      fontSize: '0.5rem',
+      fontFamily: '"Kalam", "comic sans ms", fantasy',
+      letterSpacing: 1,
+      fontWeight: 'bold',
+      width: '100%',
+      height: 30,
+      position: 'absolute',
+      left: 0,
+      top: 0
+    }
+
+    return (
+      <div style={textBoxStyle}>
+        <span>You won! <br /> Merry Christmas from all the bears. <br /> Oliver xxxx</span>
+      </div>
+    )
+  }
+
+  renderFinalRoom() {
+    this.solidCanvas = this.createSolidCanvas()
+  }
 
   moveLoop () {
     window.requestAnimationFrame(this.moveLoop)
@@ -129,16 +202,23 @@ export default class Game extends Component {
     let x = this.state.x - (Math.cos(theta) * v)
     let y = this.state.y - (Math.sin(theta) * v)
 
-    var px = x + this.props.width / 2
-    var py = y + this.props.height / 2
+    let px = x + this.props.width / 2
+    let py = y + this.props.height / 2
 
-    let collision = this.checkSolid(px, py)
-    console.log(collision)
-
-    if (collision) return
-
-    let distance = this.state.distance + v
-    this.setState({x: x, y: y, distance: distance})
+    if (this.state.x > 122 && this.state.x < 133 
+      && this.state.y > 847 && this.state.y < 857 && !this.state.inHouse) {
+        setTimeout(() => {this.setState({inHouse: true, x: 45, y: 130}, () => {
+          this.renderFinalRoom()
+        })},3000); 
+        return
+      } else {
+        let collision = this.checkSolid(px, py - 20)
+    
+        if (collision) return
+    
+        let distance = this.state.distance + v
+        this.setState({x: x, y: y, distance: distance, hasMoved: true})
+      }
   }
 
   render() {
@@ -147,8 +227,10 @@ export default class Game extends Component {
     let step = Math.floor(this.state.distance/12) % 2
 
     let style = this.createStyle()
-    let px = this.props.width/2
-    let py = this.props.height/2
+    let px = this.state.inHouse ? this.state.x : this.props.width/2
+    let py = this.state.inHouse ? this.state.y : this.props.height/2
+
+    // let characters = this.getCharacters()
 
     return (
       <div style={style}>
@@ -157,6 +239,10 @@ export default class Game extends Component {
           x={px}
           y={py}
           step={step} />
+
+          { this.renderInstructions() }
+
+          { this.renderCongratulations() }
       </div>
     )
   }

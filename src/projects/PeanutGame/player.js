@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import characters from './characters'
+import characters from './characterDefs'
 
 let scales = {
   'peanut': '0.5'
