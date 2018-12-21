@@ -35,7 +35,11 @@ export default class Player extends Component {
     let sprite = require(`.${character['sprite']}`)
 
     let orientation = this.getOrientation(theta)
-    let spriteLoc   = character.orientations[orientation][this.props.step]
+    // let spriteLoc   = character.orientations[orientation][this.props.step]
+
+
+    let spriteLocs = character.orientations[orientation] || {}
+    let spriteLoc = spriteLocs[this.props.step] || [0, 0]
 
     let x = spriteLoc[0] * character.width
     let y = spriteLoc[1] * character.height

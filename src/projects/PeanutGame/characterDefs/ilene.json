@@ -1,0 +1,12 @@
+{
+    "name": "ilene",
+    "width": 16,
+    "height": 24,
+    "sprite": "/assets/characters/ilene.png",
+    "orientations": {
+      "south": [
+        [0, 0, false],
+        [0, 0, true]
+      ]
+    }
+  }
