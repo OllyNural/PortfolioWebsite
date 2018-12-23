@@ -37,6 +37,8 @@ export default class Game extends Component {
     this.getInteractionText = this.getInteractionText.bind(this)
     window.addEventListener('keydown', this.onKeyDown)
     window.addEventListener('keyup', this.onKeyUp)
+    window.addEventListener('touchend', this.onTouchend)
+    window.addEventListener('touchstart', this.onTouchstart)
     this.solidCanvas = this.createSolidCanvas()
   }
 
@@ -192,6 +194,28 @@ export default class Game extends Component {
         <span>Congratulations! You returned Peanut safely! <br /> Merry Christmas from all the bears. <br /> Oliver xxxx</span>
       </div>
     )
+  }
+
+  onTouchstart (evt) {
+    var hPct = evt.layerX / window.innerWidth
+    var vPct = evt.layerY / window.innerHeight
+
+    if (hPct < 0.5) this.setState({isMovingWest: true})
+    if (hPct >= 0.5) this.setState({isMovingEast: true})
+
+    if (vPct < 0.5) this.setState({isMovingNorth: true})
+    if (vPct >= 0.5) this.setState({isMovingSouth: true})
+  }
+
+  onTouchend (evt) {
+    var hPct = evt.layerX / window.innerWidth
+    var vPct = evt.layerY / window.innerHeight
+
+    if (hPct < 0.5) this.setState({isMovingWest: false})
+    if (hPct >= 0.5) this.setState({isMovingEast: false})
+
+    if (vPct < 0.5) this.setState({isMovingNorth: false})
+    if (vPct >= 0.5) this.setState({isMovingSouth: false})
   }
 
   renderFinalRoom() {
