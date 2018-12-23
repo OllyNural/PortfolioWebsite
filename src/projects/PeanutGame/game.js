@@ -10,8 +10,6 @@ import characters from './characters.js'
 
 import './game.css'
 
-let fps, fpsInterval, startTime, now, then, elapsed;
-
 
 export default class Game extends Component {
   constructor() {
@@ -23,7 +21,7 @@ export default class Game extends Component {
       isMovingEast: false,
       isMovingSouth: false,
       isMovingWest: false,
-      speed: 0.1,
+      speed: 0.08,
       x: 600,
       y: 100,
       distance: 0,
@@ -42,17 +40,9 @@ export default class Game extends Component {
     this.solidCanvas = this.createSolidCanvas()
   }
 
-  componentWillMount () {
-    this.startAnimating(60)
-    // window.requestAnimationFrame(this.moveLoop)
+  componentWillMount() {
+    window.requestAnimationFrame(this.moveLoop)
   }
-
-  startAnimating(fps) {
-    fpsInterval = 1000 / fps;
-    then = Date.now();
-    startTime = then;
-    this.moveLoop();
-}
 
   createSolidCanvas() {
     let canvas = document.createElement('canvas')
@@ -64,12 +54,6 @@ export default class Game extends Component {
     img.src = backgroundMapSolid
     img.onload = () => { ctx.drawImage(img, 0, 0) }
     return canvas
-  }
-
-  convertCoords (xMap, yMap) {
-    let x = xMap - this.state.x + this.props.width / 2
-    let y = yMap - this.state.y + this.props.height / 2
-    return [x, y]
   }
 
   checkSolid(x, y) {
@@ -110,7 +94,7 @@ export default class Game extends Component {
     }
   }
 
-  calculateTheta () {
+  calculateTheta() {
     let x = 0
     let y = 0
 
@@ -127,10 +111,10 @@ export default class Game extends Component {
     let action = keyMap[code]
     if (!action) return
 
-    if (action === 'up') this.setState({ isMovingNorth: true})
-    if (action === 'right') this.setState({ isMovingEast: true})
-    if (action === 'down') this.setState({ isMovingSouth: true})
-    if (action === 'left') this.setState({ isMovingWest: true})
+    if (action === 'up') this.setState({ isMovingNorth: true })
+    if (action === 'right') this.setState({ isMovingEast: true })
+    if (action === 'down') this.setState({ isMovingSouth: true })
+    if (action === 'left') this.setState({ isMovingWest: true })
   }
 
   onKeyUp(e) {
@@ -138,13 +122,13 @@ export default class Game extends Component {
     let action = keyMap[code]
     if (!action) return
 
-    if (action === 'up') this.setState({ isMovingNorth: false})
-    if (action === 'right') this.setState({ isMovingEast: false})
-    if (action === 'down') this.setState({ isMovingSouth: false})
-    if (action === 'left') this.setState({ isMovingWest: false})
+    if (action === 'up') this.setState({ isMovingNorth: false })
+    if (action === 'right') this.setState({ isMovingEast: false })
+    if (action === 'down') this.setState({ isMovingSouth: false })
+    if (action === 'left') this.setState({ isMovingWest: false })
   }
 
-  isMoving () {
+  isMoving() {
     let isMoving = this.state.isMovingEast ||
       this.state.isMovingWest ||
       this.state.isMovingNorth ||
@@ -152,8 +136,8 @@ export default class Game extends Component {
 
     return isMoving
   }
-  
-  renderInstructions () {
+
+  renderInstructions() {
     if (this.state.hasMoved) return ''
 
     let textBoxStyle = {
@@ -181,7 +165,7 @@ export default class Game extends Component {
     )
   }
 
-  renderCongratulations () {
+  renderCongratulations() {
     if (!this.state.inHouse) return ''
 
     let textBoxStyle = {
@@ -196,6 +180,7 @@ export default class Game extends Component {
       letterSpacing: 1,
       fontWeight: 'bold',
       width: '100%',
+      paddingBottom: '5px',
       height: 30,
       position: 'absolute',
       left: 0,
@@ -204,7 +189,7 @@ export default class Game extends Component {
 
     return (
       <div style={textBoxStyle}>
-        <span>You won! <br /> Merry Christmas from all the bears. <br /> Oliver xxxx</span>
+        <span>Congratulations! You returned Peanut safely! <br /> Merry Christmas from all the bears. <br /> Oliver xxxx</span>
       </div>
     )
   }
@@ -213,19 +198,29 @@ export default class Game extends Component {
     this.solidCanvas = this.createSolidCanvas()
   }
 
-  convertCoords (xMap, yMap) {
-    var x = xMap - this.state.x + this.props.width / 2
-    var y = yMap - this.state.y + this.props.height / 2
+  convertCoords(xMap, yMap) {
+    let x = xMap - this.state.x + this.props.width / 2
+    let y = yMap - this.state.y + this.props.height / 2
     return [x, y]
   }
 
-  getCharacters () {
-    var chars = this.state.characters.map(function (c) {
-      var x, y, theta, step, loc
-      x = c.loc.x
-      y = c.loc.y
-      theta = c.theta || 0
-      step = c.step || 0
+  getCharacters() {
+    let now = Date.now()
+    let chars = this.state.characters.map(function (c) {
+      let x, y, theta, step, loc
+
+      if (typeof c.loc === 'function') {
+        loc = c.loc(now)
+        x = loc.x
+        y = loc.y
+        theta = loc.theta 
+        step = loc.step
+      } else {
+        x = c.loc.x
+        y = c.loc.y
+        theta = c.theta || 0
+        step = c.step || 0
+      }
 
       return {
         name: c.name,
@@ -235,6 +230,7 @@ export default class Game extends Component {
         },
         theta: theta,
         step: step,
+        inHouse: c.inHouse,
         response: c.response
       }
     })
@@ -242,10 +238,11 @@ export default class Game extends Component {
     return chars
   }
 
-  getInteractionText (characters) {
+  getInteractionText(characters) {
     let text = ''
 
     characters.forEach((c) => {
+      if (c.inHouse !== this.state.inHouse) return ''
       let distance = eDistance([c.loc.x, c.loc.y], [this.state.x, this.state.y])
       if (distance < 25 && c.response) {
         text = c.response
@@ -255,7 +252,7 @@ export default class Game extends Component {
     return text
   }
 
-  renderInteractionText (characters) {
+  renderInteractionText(characters) {
     let interactionText = this.getInteractionText(characters)
     if (!interactionText) return ''
 
@@ -288,28 +285,19 @@ export default class Game extends Component {
     setTimeout((() => {
       let tempGameClasses = this.state.gameClasses
       tempGameClasses.splice(tempGameClasses.length - 1, 1)
-      this.setState({gameClasses: tempGameClasses})
+      this.setState({ gameClasses: tempGameClasses })
     }), 1000)
-    if (this.state.isTransition) return 
-    this.setState({gameClasses: [...this.state.gameClasses, 'hide']})
+    if (this.state.isTransition) return
+    this.setState({ gameClasses: [...this.state.gameClasses, 'hide'] })
   }
 
-  moveLoop () {
+  moveLoop() {
     window.requestAnimationFrame(this.moveLoop)
 
-    // Throttle FPS
-    now = Date.now();
-    elapsed = now - then;
-
-    if (elapsed <= fpsInterval) return
-    then = now - (elapsed % fpsInterval);
-
-
-    // Actual Move Loop
     let lastTime = this.lastTime || Date.now() - 50
     this.lastTime = Date.now()
 
-    if (!this.isMoving()) return this.setState({v: 0})
+    if (!this.isMoving()) return this.setState({ v: 0 })
 
     let elapsed = Date.now() - lastTime
     let v = elapsed * this.state.speed
@@ -321,65 +309,72 @@ export default class Game extends Component {
     let px = x + this.props.width / 2
     let py = y + this.props.height / 2
 
-    if (this.state.x > 122 && this.state.x < 133 
+    if (this.state.x > 122 && this.state.x < 133
       && this.state.y > 847 && this.state.y < 857) {
-        this.showRoomTransition()
-        this.setState({isTransition: true})
-        setTimeout(() => {
-          this.setState({inHouse: true, x: 45, y: 130}, () => {
-            this.renderFinalRoom()
-          }
-        )}, 1000); 
-        return
-      } else {
-        let collision = this.checkSolid(px, py - 20)
-    
-        if (collision) return
-    
-        let distance = this.state.distance + v
-        this.setState({x: x, y: y, distance: distance, hasMoved: true})
-      }
+      this.showRoomTransition()
+      this.setState({ isTransition: true })
+      setTimeout(() => {
+        this.setState({ inHouse: true, x: 45, y: 140 }, () => {
+          this.renderFinalRoom()
+        }
+        )
+      }, 1000);
+      return
+    } else {
+      let collision = this.checkSolid(px, py - 20)
+
+      if (collision) return
+
+      let distance = this.state.distance + v
+      this.setState({ x: x, y: y, distance: distance, hasMoved: true })
+    }
   }
 
   render() {
     let theta = this.calculateTheta()
     if (!this.isMoving()) theta = this.state.lastTheta
-    let step = Math.floor(this.state.distance/12) % 2
+    let step = Math.floor(this.state.distance / 12) % 2
 
     let style = this.createStyle()
-    let px = this.state.inHouse ? this.state.x : this.props.width/2
-    let py = this.state.inHouse ? this.state.y : this.props.height/2
+    let px = this.state.inHouse ? this.state.x : this.props.width / 2
+    let py = this.state.inHouse ? this.state.y : this.props.height / 2
 
     let characters = this.getCharacters()
-    
 
     return (
       <div className={this.state.gameClasses.join(' ')} style={style}>
+
+        {characters.map((c, i) => {
+          let { x, y } = c.loc
+          if (!c.inHouse) {
+            let coords = this.convertCoords(x, y)
+            x = coords[0]
+            y = coords[1]
+          }
+
+          return (
+            <Player
+              name={c.name}
+              isVisible={c.inHouse === this.state.inHouse}
+              theta={c.theta}
+              x={x}
+              y={y}
+              step={c.step} />
+          )
+        })}
+
+        {this.renderInstructions()}
+
         <Player name={'peanut'}
+          isVisible={'true'}
           theta={theta}
           x={px}
           y={py}
           step={step} />
 
-          {characters.map((c, i) => {
-            var {x, y} = c.loc
-            var [mx, my] = this.convertCoords(x, y)
+        {this.renderCongratulations()}
 
-            return (
-              <Player
-                name={c.name}
-                theta={c.theta}
-                x={mx}
-                y={my}
-                step={c.step} />
-            )
-          })}
-
-          { this.renderInstructions() }
-
-          { this.renderCongratulations() }
-
-          { this.renderInteractionText(characters) }
+        {this.renderInteractionText(characters)}
       </div>
     )
   }

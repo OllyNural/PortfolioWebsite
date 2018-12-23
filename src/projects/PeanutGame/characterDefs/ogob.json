@@ -6,7 +6,7 @@
     "orientations": {
       "south": [
         [0, 0, false],
-        [0, 0, true]
+        [0, 1, false]
       ]
     }
   }

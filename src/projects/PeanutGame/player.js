@@ -2,7 +2,12 @@ import React, { Component } from 'react'
 import characters from './characterDefs'
 
 let scales = {
-  'peanut': '0.5'
+  'peanut': '0.5',
+  'ollybear': '0.5',
+  'ilene': '1.25',
+  'nugget': '0.35',
+  'ogob': '0.5',
+  'pookie': '0.5'
 }
 
 export default class Player extends Component {
@@ -35,8 +40,6 @@ export default class Player extends Component {
     let sprite = require(`.${character['sprite']}`)
 
     let orientation = this.getOrientation(theta)
-    // let spriteLoc   = character.orientations[orientation][this.props.step]
-
 
     let spriteLocs = character.orientations[orientation] || {}
     let spriteLoc = spriteLocs[this.props.step] || [0, 0]
@@ -46,8 +49,12 @@ export default class Player extends Component {
 
     let flip = spriteLoc[2] ? -1 : 1
 
+    let borderRadius = character.name === 'signpost' ? '0px' : '10px'
+    let display = this.props.isVisible ? 'block' : 'none'
+
     let style = {
-      borderRadius: '10px',
+      display: display,
+      borderRadius: borderRadius,
       width: this.state.character.width,
       height: this.state.character.height,
       position: 'absolute',
