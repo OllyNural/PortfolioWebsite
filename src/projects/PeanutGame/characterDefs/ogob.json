@@ -1,0 +1,12 @@
+{
+    "name": "ogob",
+    "width": 60,
+    "height": 60,
+    "sprite": "/assets/characters/ogob.png",
+    "orientations": {
+      "south": [
+        [0, 0, false],
+        [0, 1, false]
+      ]
+    }
+  }

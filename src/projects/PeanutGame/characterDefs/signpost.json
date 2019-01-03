@@ -1,0 +1,11 @@
+{
+  "name": "signpost",
+  "width": 16,
+  "height": 16,
+  "sprite": "/assets/characters/signpost.png",
+  "orientations": {
+    "south": [
+      [0, 0, false]
+    ]
+  }
+}
