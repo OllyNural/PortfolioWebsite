@@ -1,7 +1,6 @@
 # PortfolioWebsite
 Portfolio Website
 
-# SSH onto box
-ssh -i /path/to/private_key bitnami@aws_server_location
+Deprecated Portfolio Website using React.
 
-Use ```npm run start-server``` and ```npm run stop-server``` 
+Move to: https://github.com/OllyNural/portfolio
